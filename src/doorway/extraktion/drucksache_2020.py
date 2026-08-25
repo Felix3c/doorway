@@ -52,7 +52,7 @@ TYP_REGELN: list[tuple[re.Pattern, str]] = [
     (re.compile(r"^(firma|gmbh|unternehmen|kommerzielle|gbr|genossenschaft)", re.I), "Firma"),
     (
         re.compile(
-            r"stadt|gemeinde|kreis|^kreis |b[üu]rgermeister|landrat|"
+            r"stadt\b|gemeinde\b|\bkreis\b|^kreis |b[üu]rgermeister|landrat|"
             r"stadtverwaltung|^lvr|^lwl|^vhs|volkshochschule|kulturb[üu]ro",
             re.I,
         ),

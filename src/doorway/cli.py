@@ -76,12 +76,24 @@ def _prognose(args) -> int:
     return 0
 
 
+def _kill_kriterium(_args) -> int:
+    from .backtest import als_text
+    from .backtest import pruefen as backtest_pruefen
+
+    bericht = backtest_pruefen(_register_bauen(), k.lesen(KORPUS))
+    print(als_text(bericht))
+    return 0 if bericht.bestanden else 1
+
+
 def main(argv=None) -> int:
     p = argparse.ArgumentParser(prog="doorway")
     unter = p.add_subparsers(dest="befehl", required=True)
 
     unter.add_parser("laden", help="Quelldokumente holen und pruefen").set_defaults(fn=_laden)
     unter.add_parser("ernten", help="Korpus und Register neu bauen").set_defaults(fn=_ernten)
+    unter.add_parser(
+        "kill-kriterium", help="Prueft beide Huerden aus Paragraph 14.2"
+    ).set_defaults(fn=_kill_kriterium)
 
     pr = unter.add_parser("prognose", help="Prognose fuer ein Vorhaben")
     pr.add_argument("vorhaben")

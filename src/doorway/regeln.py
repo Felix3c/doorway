@@ -30,11 +30,12 @@ REGELN: tuple[Regel, ...] = (
         name="vereinseigene Ausstattung",
         beleg="Drs 17/9738 (Ablehnungsgruende 2018-2019); Vorl 18/5027, Foerderjahr 2025",
         hinweis="Ausstattung, die dem Verein selbst gehoert und ihm allein nuetzt, "
-        "ist nicht foerderfaehig — Trikots, Uniformen, Fahnen, Mobiliar.",
-        muster=re.compile(
-            r"\btrikot|\buniform|vereinsfahne|vereinskleidung|dienstkleidung",
-            re.IGNORECASE,
-        ),
+        "ist nicht foerderfaehig — Trikots, Uniformen, Kleidung.",
+        # Gemessen am Korpus (25.08.2026): Trikots 0/2 bewilligt, Uniformen
+        # 0/20. Vereinsfahnen dagegen 41/44 bewilligt - die Restaurierung
+        # einer Fahne gilt offenbar als Heimatpflege. Das Teilmuster wurde
+        # deshalb entfernt (Paragraph 14.2: Regel enger, nie Huerde lockerer).
+        muster=re.compile(r"\btrikot|\buniform", re.IGNORECASE),
     ),
     Regel(
         name="fehlende Antragsberechtigung",

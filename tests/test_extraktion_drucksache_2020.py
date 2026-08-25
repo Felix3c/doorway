@@ -58,5 +58,14 @@ def test_die_fuenf_regierungsbezirke_kommen_alle_vor(gelesen):
     }
 
 
+def test_der_antragstellertyp_ist_immer_einer_der_elf_erlaubten(gelesen):
+    """Die Spalte enthaelt in der Quelle auch Klarnamen; hier nie."""
+    erlaubt = {
+        "Verein", "Vereinigung", "Initiative", "Stiftung", "Kirche", "Verband",
+        "gGmbH", "Kommune", "Privatperson", "Firma", "unbekannt",
+    }
+    assert {z["antragstellertyp"] for z in gelesen} <= erlaubt
+
+
 def test_das_ergebnis_stimmt_mit_dem_golden_file_ueberein(gelesen):
     assert gelesen == json.loads(GOLDEN.read_text(encoding="utf-8"))

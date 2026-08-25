@@ -1,8 +1,11 @@
 """Drs 17/9738, Anlage: alle Anträge der Heimatförderung 2018 und 2019.
 
 Diese Anlage hat echte Tabellenlinien; PyMuPDFs find_tables() liest sie
-sauber in elf Spalten. Klarnamen enthält sie nicht — die Landesregierung
-hat die Antragstellenden bereits selbst anonymisiert.
+sauber in elf Spalten. Die Spalte "Antragsteller" ist nur teilweise
+typisiert: neben "Verein" stehen dort auch Kommunen, Vereinsnamen und
+vereinzelt Privatpersonen mit Klarnamen. Sie wird deshalb schon hier auf
+die elf erlaubten Antragstellertypen abgebildet (§13.3 der Spec); was sich
+nicht sicher zuordnen lässt, wird "unbekannt".
 """
 
 import re
@@ -33,6 +36,38 @@ LANGFORM = {
     "Werkstatt": "Heimat-Werkstatt",
     "Zeugnis": "Heimat-Zeugnis",
 }
+
+
+# Reihenfolge zaehlt: die erste passende Regel gewinnt. Die Muster decken
+# auch die Tippfehler der Quelle ab ("Verei", "Vereiun", "Initniative").
+TYP_REGELN: list[tuple[re.Pattern, str]] = [
+    (re.compile(r"^privatperson", re.I), "Privatperson"),
+    (re.compile(r"^(christliche )?vereinigun", re.I), "Vereinigung"),
+    (re.compile(r"^verei", re.I), "Verein"),
+    (re.compile(r"ini[st]?t?niative|initiative", re.I), "Initiative"),
+    (re.compile(r"^stiftung", re.I), "Stiftung"),
+    (re.compile(r"^kirch", re.I), "Kirche"),
+    (re.compile(r"^(verband|gewerkschaft)", re.I), "Verband"),
+    (re.compile(r"^(ggmbh|gug|gemeinn)", re.I), "gGmbH"),
+    (re.compile(r"^(firma|gmbh|unternehmen|kommerzielle|gbr|genossenschaft)", re.I), "Firma"),
+    (
+        re.compile(
+            r"stadt|gemeinde|kreis|^kreis |b[üu]rgermeister|landrat|"
+            r"stadtverwaltung|^lvr|^lwl|^vhs|volkshochschule|kulturb[üu]ro",
+            re.I,
+        ),
+        "Kommune",
+    ),
+]
+
+
+def _typ(text: str) -> str:
+    """Bildet die Antragsteller-Spalte auf einen der erlaubten Typen ab."""
+    roh = (text or "").strip()
+    for muster, typ in TYP_REGELN:
+        if muster.search(roh):
+            return typ
+    return "unbekannt"
 
 
 def _datum(text: str) -> str | None:
@@ -81,7 +116,7 @@ def extrahieren(pdf: Path) -> list[dict]:
                         "bezirksregierung": feld["bezirksregierung"] or None,
                         "kommune": feld["kommune"] or None,
                         "foerderelement": element,
-                        "antragstellertyp": feld["antragstellertyp"] or None,
+                        "antragstellertyp": _typ(feld["antragstellertyp"]),
                         "vorhabentext": feld["vorhabentext"] or None,
                         "betrag_euro": _betrag(feld["betrag_euro"]),
                         "antragsdatum": _datum(feld["antragsdatum"]),

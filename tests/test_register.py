@@ -32,6 +32,13 @@ def test_zaehlen_bildet_eine_zeile_je_element_jahr_und_stelle():
     assert (scheck.antraege, scheck.bewilligt, scheck.abgelehnt) == (2, 1, 1)
 
 
+def test_zaehlen_bildet_zusaetzlich_die_landesweite_summenzeile():
+    zeilen = zaehlen([e(stelle="Koeln"), e(stelle="Koeln", status="abgelehnt", grund="x"), e(stelle="Muenster")])
+    landesweit = next(z for z in zeilen if z.bewilligungsstelle is None)
+    assert (landesweit.antraege, landesweit.bewilligt, landesweit.abgelehnt) == (3, 2, 1)
+    assert {z.bewilligungsstelle for z in zeilen} == {None, "Koeln", "Muenster"}
+
+
 def test_zaehlen_setzt_herkunft_auf_gezaehlt():
     assert zaehlen([e()])[0].herkunft == "gezaehlt"
 

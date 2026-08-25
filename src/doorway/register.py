@@ -75,10 +75,19 @@ def _sortiert(zeilen: Iterable[Registerzeile]) -> list[Registerzeile]:
 
 
 def zaehlen(entscheidungen: Iterable[Entscheidung]) -> list[Registerzeile]:
-    """Aggregiert Einzelentscheidungen zu Registerzeilen."""
+    """Aggregiert Einzelentscheidungen zu Registerzeilen.
+
+    Liegt eine Entscheidung mit Bezirksregierung vor, zaehlt sie doppelt:
+    einmal fuer ihre Stelle und einmal fuer die landesweite Zeile
+    (bewilligungsstelle=None, "ueber alle"). Ohne diese Summenzeile haetten
+    die Jahre 2018/2019 keinen landesweiten Wert und die Kalibrierung wuerde
+    2025 allein aus 2021 vorhersagen.
+    """
     eimer: dict[tuple, list[Entscheidung]] = defaultdict(list)
     for e in entscheidungen:
         eimer[(e.programm, e.foerderelement, e.foerderjahr, e.bezirksregierung)].append(e)
+        if e.bezirksregierung is not None:
+            eimer[(e.programm, e.foerderelement, e.foerderjahr, None)].append(e)
 
     zeilen = []
     for (programm, element, jahr, stelle), gruppe in eimer.items():

@@ -1,0 +1,32 @@
+[
+ {
+  "quelle_id": "vorl-18-5027",
+  "zitat": "konnten 598",
+  "foerderjahr": 2025,
+  "foerderelement": "Heimat-Scheck",
+  "bewilligungsstelle": null,
+  "bewilligt": 598,
+  "abgelehnt": null,
+  "bemerkung": "Fliesstext: Im Foerderjahr 2025 konnten 598 Heimat-Schecks bewilligt werden (2024: 550)."
+ },
+ {
+  "quelle_id": "vorl-18-5027",
+  "zitat": "Zahl der Ablehnungen (329)",
+  "foerderjahr": 2025,
+  "foerderelement": "Heimat-Scheck",
+  "bewilligungsstelle": null,
+  "bewilligt": null,
+  "abgelehnt": 329,
+  "bemerkung": "Fliesstext: Die dennoch moeglichweise immer noch hoch erscheinende Zahl der Ablehnungen (329) hat vielfaeltige Gruende."
+ },
+ {
+  "quelle_id": "vorl-18-3926",
+  "zitat": "wurden 396 Anträge",
+  "foerderjahr": 2024,
+  "foerderelement": "Heimat-Scheck",
+  "bewilligungsstelle": null,
+  "bewilligt": null,
+  "abgelehnt": 396,
+  "bemerkung": "Fliesstext: Insgesamt wurden 396 Antraege auf die Bewilligung eines Heimat-Schecks durch die Bezirksregierungen abgelehnt. Fuer 2024 gibt es keine gezaehlte Gegenzeile — das Foerderjahr liegt nur als Aggregat je Bezirksregierung vor."
+ }
+]

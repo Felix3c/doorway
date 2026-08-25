@@ -96,12 +96,17 @@ def aus_drucksache_2020(zeilen: Iterable[dict]) -> list[Entscheidung]:
     """Wandelt die Rohzeilen aus Drs 17/9738 in Entscheidungen.
 
     Das Förderjahr ergibt sich aus dem Antragsdatum; fehlt es, wird die
-    Zeile verworfen, statt ein Jahr zu raten.
+    Zeile verworfen, statt ein Jahr zu raten. Liegt das Antragsjahr nach
+    dem Entscheidungsjahr (S. 114: Antrag 01.09.2020, Bescheid 10.12.2019),
+    ist das Förderjahr nicht bestimmbar und die Zeile entfällt ebenfalls.
+    Abweichungen um Tage innerhalb eines Jahres bleiben — sie ändern das
+    Förderjahr nicht.
     """
     ergebnis = []
     for z in zeilen:
         antrag = z.get("antragsdatum")
-        if not antrag:
+        entscheidung = z.get("entscheidungsdatum")
+        if not antrag or (entscheidung and antrag[:4] > entscheidung[:4]):
             continue
         typ = z.get("antragstellertyp")
         ergebnis.append(

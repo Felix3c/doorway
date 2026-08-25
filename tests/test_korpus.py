@@ -68,6 +68,21 @@ def test_schreiben_sortiert_stabil_damit_diffs_lesbar_bleiben(tmp_path):
     assert datei.read_text(encoding="utf-8") == erste
 
 
+def test_ein_antrag_nach_seiner_entscheidung_bekommt_kein_foerderjahr():
+    from doorway.korpus import aus_drucksache_2020
+
+    roh = {
+        "bezirksregierung": "Arnsberg", "kommune": "Altena", "foerderelement": "Heimat-Scheck",
+        "antragstellertyp": "Verein", "vorhabentext": "Homepage", "betrag_euro": None,
+        "antragsdatum": "2020-09-01", "entscheidungsdatum": "2019-12-10",
+        "status": "abgelehnt", "ablehnungsgrund_roh": "fehlende Kostenaufstellung", "seite": 114,
+    }
+    assert aus_drucksache_2020([roh]) == []
+    assert len(aus_drucksache_2020([{**roh, "antragsdatum": "2019-09-01"}])) == 1
+    # Wenige Tage Abstand im selben Jahr aendern das Foerderjahr nicht.
+    assert len(aus_drucksache_2020([{**roh, "antragsdatum": "2019-12-12"}])) == 1
+
+
 def test_ein_unbekannter_status_wird_abgelehnt():
     with pytest.raises(ValueError, match="Status"):
         aus_anlage_2025([{**ROH_2025[0], "status": "zurueckgezogen"}])

@@ -1,0 +1,44 @@
+[
+ {
+  "bewilligungsstelle": "Arnsberg",
+  "bewilligt": 261,
+  "foerdervolumen_euro": "1250068.00",
+  "abgelehnt": 147,
+  "seite": 6
+ },
+ {
+  "bewilligungsstelle": "Detmold",
+  "bewilligt": 202,
+  "foerdervolumen_euro": "1729802.00",
+  "abgelehnt": 92,
+  "seite": 6
+ },
+ {
+  "bewilligungsstelle": "Düsseldorf",
+  "bewilligt": 162,
+  "foerdervolumen_euro": "1705400.00",
+  "abgelehnt": 65,
+  "seite": 6
+ },
+ {
+  "bewilligungsstelle": "Köln",
+  "bewilligt": 134,
+  "foerdervolumen_euro": "551769.00",
+  "abgelehnt": 87,
+  "seite": 6
+ },
+ {
+  "bewilligungsstelle": "Münster",
+  "bewilligt": 124,
+  "foerdervolumen_euro": "2068269.00",
+  "abgelehnt": 36,
+  "seite": 6
+ },
+ {
+  "bewilligungsstelle": null,
+  "bewilligt": 883,
+  "foerdervolumen_euro": "7305308.00",
+  "abgelehnt": 427,
+  "seite": 6
+ }
+]

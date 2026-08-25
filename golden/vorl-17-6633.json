@@ -1,0 +1,50 @@
+[
+ {
+  "foerderelement": "Heimat-Scheck",
+  "antraege": 1125,
+  "bewilligt": 850,
+  "abgelehnt": 275,
+  "foerdervolumen_euro": "1700000.00",
+  "seite": 9
+ },
+ {
+  "foerderelement": "Heimat-Preis",
+  "antraege": 243,
+  "bewilligt": 243,
+  "abgelehnt": 0,
+  "foerdervolumen_euro": "1395000.00",
+  "seite": 9
+ },
+ {
+  "foerderelement": "Heimat-Fonds",
+  "antraege": 33,
+  "bewilligt": 31,
+  "abgelehnt": 2,
+  "foerdervolumen_euro": "539096.27",
+  "seite": 9
+ },
+ {
+  "foerderelement": "Heimat-Werkstatt",
+  "antraege": 46,
+  "bewilligt": 40,
+  "abgelehnt": 6,
+  "foerdervolumen_euro": "2727081.65",
+  "seite": 9
+ },
+ {
+  "foerderelement": "Heimat-Zeugnis",
+  "antraege": 66,
+  "bewilligt": 55,
+  "abgelehnt": 11,
+  "foerdervolumen_euro": "18779831.95",
+  "seite": 9
+ },
+ {
+  "foerderelement": null,
+  "antraege": 1513,
+  "bewilligt": 1219,
+  "abgelehnt": 294,
+  "foerdervolumen_euro": "25141009.87",
+  "seite": 9
+ }
+]

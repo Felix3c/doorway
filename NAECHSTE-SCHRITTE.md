@@ -1,6 +1,6 @@
 # Doorway — Nächste Schritte
 
-**Stand:** 2026-08-26 (Historie bereinigt, Repo-Entscheidung gefallen; Kill-Kriterium vom 25.08.: v1 geht NICHT live)
+**Stand:** 2026-08-26 (Mindestintervall gebaut, viertes Urteil: Hürde 2 reißt strukturell an 2019/2021; Historie bereinigt; Repo wird privat)
 **Führendes Dokument:** `docs/superpowers/specs/2026-08-24-doorway-design.md` (Präambel mit Leitsatz seit 25.08.)
 **Plan Teil 1:** `docs/superpowers/plans/2026-08-25-doorway-ernte-und-urteil.md` — alle 13 Tasks erledigt
 **Phase:** Urteil gefällt. Stufe 2 muss überarbeitet werden, bevor Teil 2 (Spiegel, Web, öffentliches Register) überhaupt geplant wird.
@@ -41,13 +41,27 @@ Alle fünf Fehlschläge haben dieselbe Ursache: der Sprung 2019→2021 (Fonds 26
 - Register hatte für 2018/19 keine landesweite Zeile → Summenzeile "über alle" ergänzt (ohne sie sagte die Kalibrierung 2025 allein aus 2021 vorher).
 - Quellfehler, nie geraten: "29.02.2019", "13.09.20218", zwei Antragsdaten in einer Zelle (letztes zählt), 5 Antragsjahre nach dem Entscheidungsjahr (kein Förderjahr), Zeile 644 "Overath" in der Elementspalte (behalten als "unbekannt").
 
+## Viertes Urteil (26.08.2026, nach Mindestintervall in Stufe 2)
+
+Untergrenze eingebaut: bei weniger als drei Vorjahren gilt die größte Schwankung, die irgendein Element bis dahin gezeigt hat (`basisrate.uebergreifende_schwankung`). Wirkung: Scheck 2021 ±4,4 → ±7,4 %, Preis 2021 ±2,7 → ±7,4 %. **Hürde 2 reißt trotzdem, 5 von 15** — und zwar strukturell:
+
+- **2019:** erstes Jahr aller Elemente ist 2018; niemand hat zwei Jahre, also gibt es keine Vergleichsschwankung. Scheck 2019 bleibt bei ±2,6 % und liegt 3 Punkte daneben.
+- **2021:** Fonds 26→6 %, Scheck 40→24 %, Werkstatt 54→13 %, Zeugnis 55→17 %. Der Einbruch nach der Corona-Lücke ist aus 2018/19 nicht vorhersehbar, mit keinem Intervall, das noch eine Aussage wäre.
+- **2025:** alle fünf Elemente im Intervall.
+
+Der Befund: Die Prognose funktioniert, sobald sie drei Jahre kennt. Die Hürde, wie sie in §14.2 steht ("jede Klasse im Backtest innerhalb ihres Intervalls"), verlangt aber auch Treffer in Jahren, in denen es nichts zu wissen gab.
+
 ## Nächster konkreter Schritt
 
-**Stufe 2 überarbeiten, damit das Intervall bei dünner Datenlage ehrlich bleibt:** In `src/doorway/basisrate.py` ein Mindestintervall einführen, wenn weniger als drei Vorjahre vorliegen — Kandidat ist die über alle Elemente beobachtete Regimeschwankung statt der elementeigenen. Danach `doorway kill-kriterium` erneut laufen lassen. Erst wenn beide Hürden halten, wird Teil 2 geplant. Hält Hürde 2 auch dann nicht, ist die Corona-Lücke 2020 (IFG-Anfrage, §7) der Weg, nicht eine weichere Hürde.
+**Entscheidung von Felix** (siehe unten), dann entweder §14.2 präzisieren oder die IFG-Anfrage für 2020 stellen. Keine Programmierarbeit, bevor das entschieden ist — sonst wird die Hürde stillschweigend gelockert, und genau das verbietet der Plan.
 
 ## Wartet auf Felix
 
-- **Remote anlegen:** privates GitHub-Repo (entschieden 26.08., siehe unten). Die Historie ist seit 26.08. frei von Klarnamen (geprüft: 0 Treffer über alle Commits). Push ist damit freigegeben — braucht nur noch dein GitHub-Login.
+- **Hürde 2 — präzisieren oder Daten holen?** Zwei ehrliche Wege, ein unehrlicher:
+  - *Präzisieren:* Die Kalibrierung zählt nur Vorhersagen, denen mindestens drei belegte Vorjahre zugrunde liegen; 2019 und 2021 wären dann keine Prüfjahre, sondern Lernjahre, und das Panel zeigt für Kombinationen mit weniger Jahren keine Zahl. Das ist eine Änderung an §14.2 und gehört datiert in die Spec.
+  - *Daten holen:* IFG-Anfrage für 2020 (und 2022). Mit 2020 sähe die Prognose den Einbruch ein Jahr früher. Ein Monat Frist, 10–500 € Risiko. Ändert nichts an 2019.
+  - *Unehrlich wäre:* das Intervall so weit aufblasen, bis 2021 hineinfällt. Dann hält die Hürde, aber die Zahl sagt nichts mehr.
+- **Remote anlegen:** privates GitHub-Repo (entschieden 26.08.). Historie seit 26.08. frei von Klarnamen (0 Treffer über alle Commits). Push ist freigegeben — braucht nur dein GitHub-Login.
 
 ## Entschieden am 2026-08-26
 

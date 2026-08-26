@@ -1,6 +1,6 @@
 # Doorway — Nächste Schritte
 
-**Stand:** 2026-08-25 (abends: Teil 1 gebaut und auf `master` gemergt; Kill-Kriterium gemessen — v1 geht NICHT live)
+**Stand:** 2026-08-26 (Historie bereinigt, Repo-Entscheidung gefallen; Kill-Kriterium vom 25.08.: v1 geht NICHT live)
 **Führendes Dokument:** `docs/superpowers/specs/2026-08-24-doorway-design.md` (Präambel mit Leitsatz seit 25.08.)
 **Plan Teil 1:** `docs/superpowers/plans/2026-08-25-doorway-ernte-und-urteil.md` — alle 13 Tasks erledigt
 **Phase:** Urteil gefällt. Stufe 2 muss überarbeitet werden, bevor Teil 2 (Spiegel, Web, öffentliches Register) überhaupt geplant wird.
@@ -47,9 +47,13 @@ Alle fünf Fehlschläge haben dieselbe Ursache: der Sprung 2019→2021 (Fonds 26
 
 ## Wartet auf Felix
 
-- **Git-Historie vor dem ersten Push bereinigen:** Commit `2647a73` enthält `golden/drs-17-9738.json` mit dem Klarnamen einer Privatperson (seit `105afdc` entfernt, aber in der Historie). Umschreiben ist lokal und gefahrlos — muss aber vor jedem Push passieren.
-- **Repo privat oder Korpus raus:** `daten/korpus.jsonl` ist laut §13.1 intern. Ein öffentliches Repo würde ihn veröffentlichen. Entscheidung gehört in die Spec (§13.1), dann Remote anlegen.
-- **Mindestintervall oder IFG zuerst?** Siehe nächster Schritt — beides ist legitim, das eine ist ein Abend, das andere ein Monat.
+- **Remote anlegen:** privates GitHub-Repo (entschieden 26.08., siehe unten). Die Historie ist seit 26.08. frei von Klarnamen (geprüft: 0 Treffer über alle Commits). Push ist damit freigegeben — braucht nur noch dein GitHub-Login.
+
+## Entschieden am 2026-08-26
+
+- **Git-Historie bereinigt.** Das Golden File `golden/drs-17-9738.json` trug in den Commits vom 25.08. den Klarnamen einer Privatperson (Antragsteller-Spalte der Drs 17/9738). Alle Commits per `filter-branch` umgeschrieben, Sicherungs-Refs gelöscht, `gc --prune=now`; `git log -p --all` findet den Namen nicht mehr. Hashes ab dem Extraktor-Commit haben sich geändert (alt `2647a73`, neu `1344894`).
+- **Repo wird privat, Korpus bleibt versioniert.** `daten/korpus.jsonl` ist intern (§13.1); ein privates Repo veröffentlicht nichts, und der Korpus bleibt als Diff nachvollziehbar. Öffentlich wird später nur das Register.
+- **Stufe 2: Mindestintervall zuerst,** IFG-Anfrage 2020/2022 erst, wenn Hürde 2 danach immer noch reißt.
 
 ## Blocker
 

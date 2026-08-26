@@ -78,3 +78,37 @@ def test_die_schaetzung_nennt_die_jahre_auf_denen_sie_beruht():
 def test_chance_ist_die_gegenwahrscheinlichkeit_der_quote():
     s = schaetzen(BELEGT, "Heimat-Scheck")
     assert s.chance == 1.0 - s.quote
+
+
+ANDERE = [
+    r(2018, 100, 60, element="Heimat-Zeugnis"),
+    r(2019, 100, 55, element="Heimat-Zeugnis"),
+    r(2021, 100, 17, element="Heimat-Zeugnis"),
+    r(2018, 100, 21, element="Heimat-Fonds"),
+    r(2019, 100, 26, element="Heimat-Fonds"),
+    r(2021, 100, 6, element="Heimat-Fonds"),
+]
+
+
+def test_bei_weniger_als_drei_vorjahren_gilt_die_uebergreifende_schwankung_als_untergrenze():
+    """Gemessen am 25.08.2026: Scheck 2019 wurde aus einem Vorjahr mit +/-2,6 %
+    vorhergesagt und lag daneben. Ein Jahr kennt keine Schwankung; die Schwankung
+    der anderen Elemente ist die ehrlichere Untergrenze."""
+    zwei_jahre = [r(2018, 814, 469), r(2019, 820, 470)]  # eigene Schwankung ~0
+    mit_umfeld = schaetzen(zwei_jahre + ANDERE, "Heimat-Scheck", bis_jahr=2019)
+    allein = schaetzen(zwei_jahre, "Heimat-Scheck")
+    assert mit_umfeld.halbe_breite > allein.halbe_breite
+    assert mit_umfeld.quote == allein.quote
+
+
+def test_ohne_vergleichsjahre_bleibt_nur_der_stichprobenfehler():
+    """Im ersten Jahr aller Elemente kennt niemand eine Schwankung — dann wird
+    keine erfunden."""
+    s = schaetzen([r(2018, 814, 469)] + ANDERE, "Heimat-Scheck", bis_jahr=2018)
+    assert s.halbe_breite == schaetzen([r(2018, 814, 469)], "Heimat-Scheck").halbe_breite
+
+
+def test_ab_drei_vorjahren_zaehlt_die_eigene_schwankung():
+    s_mit = schaetzen(BELEGT + ANDERE, "Heimat-Scheck")
+    s_ohne = schaetzen(BELEGT, "Heimat-Scheck")
+    assert s_mit.halbe_breite == s_ohne.halbe_breite

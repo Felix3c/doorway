@@ -15,6 +15,7 @@ from typing import Iterable
 from .register import Registerzeile
 
 Z95 = 1.96
+MINDESTJAHRE = 3
 
 
 @dataclass(frozen=True)
@@ -55,6 +56,31 @@ def reihe(
     return sorted(passend, key=lambda z: z.foerderjahr)
 
 
+def uebergreifende_schwankung(
+    register: Iterable[Registerzeile],
+    bewilligungsstelle: str | None = None,
+    bis_jahr: int | None = None,
+) -> float:
+    """Halbe Intervallbreite aus der Schwankung aller Elemente je Jahr.
+
+    Für jedes Element mit mindestens zwei Jahren wird die Streuung seiner
+    Quoten gebildet; zurück kommt die größte davon, mal Z95. Gibt es kein
+    Element mit zwei Jahren, ist die Schwankung unbekannt — dann 0.0, und
+    der Stichprobenfehler bleibt allein übrig.
+    """
+    register = list(register)
+    elemente = {z.foerderelement for z in register if z.foerderelement}
+    streuungen = []
+    for element in elemente:
+        zeilen = reihe(register, element, bewilligungsstelle)
+        if bis_jahr is not None:
+            zeilen = [z for z in zeilen if z.foerderjahr <= bis_jahr]
+        quoten = [z.abgelehnt / z.antraege for z in zeilen]
+        if len(quoten) >= 2:
+            streuungen.append(statistics.stdev(quoten))
+    return Z95 * max(streuungen) if streuungen else 0.0
+
+
 def schaetzen(
     register: Iterable[Registerzeile],
     foerderelement: str,
@@ -66,6 +92,7 @@ def schaetzen(
     `bis_jahr` blendet spätere Jahre aus — so rechnet der Backtest mit dem
     Wissensstand von damals.
     """
+    register = list(register)
     zeilen = reihe(register, foerderelement, bewilligungsstelle)
     if bis_jahr is not None:
         zeilen = [z for z in zeilen if z.foerderjahr <= bis_jahr]
@@ -80,9 +107,17 @@ def schaetzen(
     quoten = [z.abgelehnt / z.antraege for z in zeilen]
     regime = Z95 * statistics.stdev(quoten) if len(quoten) >= 2 else 0.0
 
+    # Weniger als drei Jahre kennen ihre eigene Schwankung nicht. Gemessen am
+    # 25.08.2026: Scheck 2019 wurde aus einem Vorjahr mit +/-2,6 % vorhergesagt
+    # und lag daneben. Untergrenze ist dann die Schwankung, die alle Elemente
+    # zusammen bis zu diesem Jahr gezeigt haben.
+    mindest = 0.0
+    if len(quoten) < MINDESTJAHRE:
+        mindest = uebergreifende_schwankung(register, bewilligungsstelle, bis_jahr)
+
     return Schaetzung(
         quote=quote,
-        halbe_breite=max(stichprobenfehler, regime),
+        halbe_breite=max(stichprobenfehler, regime, mindest),
         grundlage_n=n,
         jahre=tuple(z.foerderjahr for z in zeilen),
         quelle_id=juengste.quelle_id,

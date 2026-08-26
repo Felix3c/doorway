@@ -58,8 +58,16 @@ def test_das_erste_jahr_wird_nicht_vorhergesagt():
     assert 2018 not in [v.jahr for v in kalibrierung(BELEGT)]
 
 
-def test_jedes_spaetere_jahr_wird_vorhergesagt():
-    assert [v.jahr for v in kalibrierung(BELEGT)] == [2019, 2021, 2024, 2025]
+def test_nur_jahre_mit_mindestens_drei_belegten_vorjahren_werden_geprueft():
+    """Paragraph 14.2, praezisiert am 26.08.2026: Ein Jahr, vor dem weniger
+    als drei Jahre liegen, ist ein Lernjahr, kein Pruefjahr."""
+    assert [v.jahr for v in kalibrierung(BELEGT)] == [2024, 2025]
+
+
+def test_mit_zwei_jahren_gibt_es_keine_pruefung_und_keinen_freifahrtschein():
+    bericht = pruefen(BELEGT[:2], [])
+    assert bericht.vorhersagen == []
+    assert bericht.huerde_kalibrierung_bestanden is False
 
 
 def test_eine_vorhersage_gilt_als_getroffen_wenn_sie_im_intervall_liegt():

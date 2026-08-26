@@ -8,7 +8,7 @@ Anordnung, damit das Auge nach dem zweiten Mal weiß, wo es hinschauen muss.
 from dataclasses import dataclass
 from typing import Iterable
 
-from .basisrate import Schaetzung, schaetzen
+from .basisrate import MINDESTJAHRE, Schaetzung, schaetzen
 from .regeln import REGELN, Regel, pruefen
 from .register import Registerzeile
 
@@ -23,6 +23,7 @@ class Urteil:
     bestanden: list[str]
     gruende: dict[str, int]
     beleg: str
+    belegte_jahre: int = 0
 
 
 def beurteilen(
@@ -39,6 +40,11 @@ def beurteilen(
     bestanden = [r.name for r in REGELN if r.name not in namen]
 
     schaetzung = schaetzen(register, foerderelement, bewilligungsstelle)
+    belegte_jahre = len(schaetzung.jahre) if schaetzung else 0
+    # Paragraph 14.2, praezisiert 26.08.2026: keine Prozentzahl unter drei
+    # belegten Foerderjahren. Register und Ausschlusspruefung bleiben.
+    if belegte_jahre < MINDESTJAHRE:
+        schaetzung = None
     mit_gruenden = [
         z
         for z in register
@@ -61,6 +67,7 @@ def beurteilen(
         bestanden=bestanden,
         gruende=gruende,
         beleg=beleg,
+        belegte_jahre=belegte_jahre,
     )
 
 
@@ -91,8 +98,13 @@ def panel(
             _zeile(f"     {r.name}"),
             _zeile(f"     {r.hinweis}"),
         ]
-    elif urteil.schaetzung is None:
+    elif urteil.schaetzung is None and urteil.belegte_jahre == 0:
         zeilen += [_zeile("  ?  Fuer diese Kombination gibt es keine belegten Zahlen.")]
+    elif urteil.schaetzung is None:
+        zeilen += [
+            _zeile("  ?  Eine Zahl gibt es erst ab drei belegten Foerderjahren."),
+            _zeile(f"     Bisher belegt: {urteil.belegte_jahre}."),
+        ]
     else:
         s = urteil.schaetzung
         zeilen += [

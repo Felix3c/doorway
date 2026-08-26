@@ -87,3 +87,13 @@ def test_ohne_registerdaten_gibt_es_keine_erfundene_zahl():
     assert "keine belegten Zahlen" in panel(
         u, "Ortsarchiv digitalisieren", "Heimat-Scheck", None
     )
+
+
+def test_mit_weniger_als_drei_jahren_zeigt_das_panel_keine_zahl():
+    """Paragraph 14.2, praezisiert am 26.08.2026: keine Prozentzahl ohne
+    drei belegte Jahre. Das Register selbst bleibt sichtbar."""
+    u = beurteilen(REGISTER[-2:], "Ortsarchiv digitalisieren", "Heimat-Scheck")
+    assert u.schaetzung is None
+    text = panel(u, "Ortsarchiv digitalisieren", "Heimat-Scheck", None)
+    assert "%" not in text.split("Woran es hier scheitert")[0]
+    assert "erst ab drei" in text

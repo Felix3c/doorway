@@ -297,6 +297,8 @@ Der Preis ist benannt: Eine Verifikation Zeile für Zeile gegen die Quelle ist n
 
 **Bei Konflikt gewinnt Stufe 1.** Lieber gar keine Prozentzahl anzeigen, als jemanden falsch abweisen. Begründung aus §6: Wer jemanden vom Antrag abhält, der gewonnen hätte, richtet genau den Schaden an, gegen den das Projekt antritt.
 
+**Präzisiert 2026-08-26, nach dem vierten Urteil aus Teil 1:** Die Kalibrierung prüft nur Vorhersagen, denen **mindestens drei belegte Förderjahre** zugrunde liegen. Jahre mit weniger Vorgeschichte sind Lernjahre, keine Prüfjahre — und für Kombinationen mit weniger als drei belegten Jahren zeigt das Panel **keine Prozentzahl**, nur Register und Ausschlussprüfung. Grund: 2018 ist für alle Elemente das erste Jahr (keine Vergleichsschwankung für 2019), und der Einbruch 2019→2021 nach der Corona-Lücke ist aus zwei Jahren mit keinem ehrlichen Intervall vorhersehbar. Gemessen: Fonds 26→6 %, Scheck 40→24 %, Werkstatt 54→13 %, Zeugnis 55→17 %. Mit drei Jahren trifft die Prognose — alle fünf Elemente 2025 lagen im Intervall. Die Hürde wird damit nicht gelockert, sondern auf die Fälle beschränkt, in denen überhaupt eine Zahl ausgewiesen wird. Gibt es keine einzige prüfbare Vorhersage, gilt die Hürde als **nicht bestanden** — kein Freifahrtschein durch Datenmangel.
+
 Bewusst **nicht** gemessen wird, wie viele Chancenlose Stufe 1 übersieht. Eine Warnung zu wenig ist verzeihlich, eine zu viel nicht. Ebenso wenig gemessen wird, wie *eng* die Intervalle aus Stufe 2 sind — weite Intervalle sind erlaubt, solange sie ehrlich sind. Der Name verspricht den Versuch, nicht das Ergebnis (§10).
 
 ---
@@ -308,7 +310,8 @@ Bewusst **nicht** gemessen wird, wie viele Chancenlose Stufe 1 übersieht. Eine 
 3. ~~Brückenkopf festlegen~~ — **Heimatförderung NRW ("Starke Heimat Nordrhein-Westfalen"), Förderjahre 2018–2025.** Register-Granularität: Programm × Förderelement × Jahr × Bezirksregierung.
 4. ~~Abschnitt 3 des Designs~~ — erledigt 2026-08-24: §12 Prognose-Mechanik, §13 Register-Datenmodell, §14 Teststrategie und Kill-Kriterium.
 5. ~~Implementierungsplan~~ — geschrieben 2026-08-25: `docs/superpowers/plans/2026-08-25-doorway-ernte-und-urteil.md` (13 Tasks). Deckt Teil 1 ab: bis zum Urteil des Kill-Kriteriums. Teil 2 — Spiegel, Weboberfläche, öffentliches Register — bekommt einen eigenen Plan, und nur, wenn beide Hürden aus §14.2 halten.
-6. **Ausführung** ← hier geht es weiter
+6. ~~Ausführung Teil 1~~ — erledigt 2026-08-25/26 (`~/doorway`, `master`, 111 Tests). Vier Urteile gemessen, siehe `NAECHSTE-SCHRITTE.md`. Hürde 2 riss strukturell; §14.2 am 26.08. präzisiert.
+7. **Kill-Kriterium unter der präzisierten Hürde messen** ← hier geht es weiter. Halten beide Hürden, wird Teil 2 geplant.
 
 **Was Abschnitt 3 für den Implementierungsplan festlegt:**
 

@@ -4,7 +4,9 @@ Zwei Hürden, beide müssen halten:
   1. Von allen Urteilen "chancenlos" dürfen höchstens ein Prozent doch
      bewilligt worden sein.
   2. Jede ausgewiesene Klasse muss im Backtest innerhalb ihres angegebenen
-     Intervalls liegen.
+     Intervalls liegen — geprüft nur dort, wo mindestens drei belegte
+     Vorjahre vorliegen (präzisiert 26.08.2026). Ohne eine einzige prüfbare
+     Vorhersage gilt die Hürde als nicht bestanden.
 
 Bei Konflikt gewinnt Hürde 1: lieber gar keine Prozentzahl anzeigen, als
 jemanden falsch abweisen.
@@ -13,7 +15,7 @@ jemanden falsch abweisen.
 from dataclasses import dataclass, field
 from typing import Iterable
 
-from .basisrate import schaetzen
+from .basisrate import MINDESTJAHRE, schaetzen
 from .korpus import Entscheidung
 from .regeln import REGELN, treffsicherheit
 from .register import Registerzeile
@@ -64,7 +66,9 @@ def kalibrierung(register: Iterable[Registerzeile]) -> list[Vorhersage]:
         nach_jahr = {z.foerderjahr: z for z in passend}
         for jahr in sorted(nach_jahr)[1:]:
             frueher = schaetzen(register, element, bis_jahr=jahr - 1)
-            if frueher is None:
+            # Paragraph 14.2, praezisiert 26.08.2026: weniger als drei belegte
+            # Vorjahre sind ein Lernjahr, kein Pruefjahr.
+            if frueher is None or len(frueher.jahre) < MINDESTJAHRE:
                 continue
             heute = nach_jahr[jahr]
             ergebnis.append(

@@ -53,7 +53,7 @@ Der Befund: Die Prognose funktioniert, sobald sie drei Jahre kennt. Die Hürde, 
 
 ## Fünftes Urteil (26.08.2026, unter dem präzisierten §14.2)
 
-Felix hat entschieden: Kalibrierung und Prozentzahl nur bei mindestens drei belegten Vorjahren; Jahre mit weniger Vorgeschichte sind Lernjahre; ohne eine einzige prüfbare Vorhersage gilt Hürde 2 als nicht bestanden. Datiert in der Spec, im Code (`backtest.kalibrierung`, `prognose.beurteilen`) und getestet (111 Tests).
+Felix hat entschieden: Kalibrierung und Prozentzahl nur bei mindestens drei belegten Vorjahren; Jahre mit weniger Vorgeschichte sind Lernjahre; ohne eine einzige prüfbare Vorhersage gilt Hürde 2 als nicht bestanden. Datiert in der Spec, im Code (`backtest.kalibrierung`, `prognose.beurteilen`) und getestet (113 Tests).
 
 ```
 Huerde 1  falsche Absagen   vereinseigene Ausstattung 0/22 = 0.0%     bestanden

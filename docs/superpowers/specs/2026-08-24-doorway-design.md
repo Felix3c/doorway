@@ -310,7 +310,7 @@ Bewusst **nicht** gemessen wird, wie viele Chancenlose Stufe 1 übersieht. Eine 
 3. ~~Brückenkopf festlegen~~ — **Heimatförderung NRW ("Starke Heimat Nordrhein-Westfalen"), Förderjahre 2018–2025.** Register-Granularität: Programm × Förderelement × Jahr × Bezirksregierung.
 4. ~~Abschnitt 3 des Designs~~ — erledigt 2026-08-24: §12 Prognose-Mechanik, §13 Register-Datenmodell, §14 Teststrategie und Kill-Kriterium.
 5. ~~Implementierungsplan~~ — geschrieben 2026-08-25: `docs/superpowers/plans/2026-08-25-doorway-ernte-und-urteil.md` (13 Tasks). Deckt Teil 1 ab: bis zum Urteil des Kill-Kriteriums. Teil 2 — Spiegel, Weboberfläche, öffentliches Register — bekommt einen eigenen Plan, und nur, wenn beide Hürden aus §14.2 halten.
-6. ~~Ausführung Teil 1~~ — erledigt 2026-08-25/26 (`~/doorway`, `master`, 111 Tests). Vier Urteile gemessen, siehe `NAECHSTE-SCHRITTE.md`. Hürde 2 riss strukturell; §14.2 am 26.08. präzisiert.
+6. ~~Ausführung Teil 1~~ — erledigt 2026-08-25/26 (`~/doorway`, `master`, 113 Tests). Vier Urteile gemessen, siehe `NAECHSTE-SCHRITTE.md`. Hürde 2 riss strukturell; §14.2 am 26.08. präzisiert.
 7. **Kill-Kriterium unter der präzisierten Hürde messen** ← hier geht es weiter. Halten beide Hürden, wird Teil 2 geplant.
 
 **Was Abschnitt 3 für den Implementierungsplan festlegt:**

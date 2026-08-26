@@ -1,9 +1,9 @@
 # Doorway — Nächste Schritte
 
-**Stand:** 2026-08-26 (Mindestintervall gebaut, viertes Urteil: Hürde 2 reißt strukturell an 2019/2021; Historie bereinigt; Repo wird privat)
+**Stand:** 2026-08-26 (§14.2 präzisiert, fünftes Urteil: **beide Hürden halten, v1 darf live gehen**; Historie bereinigt; Repo wird privat)
 **Führendes Dokument:** `docs/superpowers/specs/2026-08-24-doorway-design.md` (Präambel mit Leitsatz seit 25.08.)
 **Plan Teil 1:** `docs/superpowers/plans/2026-08-25-doorway-ernte-und-urteil.md` — alle 13 Tasks erledigt
-**Phase:** Urteil gefällt. Stufe 2 muss überarbeitet werden, bevor Teil 2 (Spiegel, Web, öffentliches Register) überhaupt geplant wird.
+**Phase:** Teil 1 abgeschlossen, Kill-Kriterium bestanden. Als Nächstes wird Teil 2 geplant (Spiegel, Weboberfläche, öffentliches Register).
 
 ---
 
@@ -51,16 +51,26 @@ Untergrenze eingebaut: bei weniger als drei Vorjahren gilt die größte Schwanku
 
 Der Befund: Die Prognose funktioniert, sobald sie drei Jahre kennt. Die Hürde, wie sie in §14.2 steht ("jede Klasse im Backtest innerhalb ihres Intervalls"), verlangt aber auch Treffer in Jahren, in denen es nichts zu wissen gab.
 
+## Fünftes Urteil (26.08.2026, unter dem präzisierten §14.2)
+
+Felix hat entschieden: Kalibrierung und Prozentzahl nur bei mindestens drei belegten Vorjahren; Jahre mit weniger Vorgeschichte sind Lernjahre; ohne eine einzige prüfbare Vorhersage gilt Hürde 2 als nicht bestanden. Datiert in der Spec, im Code (`backtest.kalibrierung`, `prognose.beurteilen`) und getestet (111 Tests).
+
+```
+Huerde 1  falsche Absagen   vereinseigene Ausstattung 0/22 = 0.0%     bestanden
+Huerde 2  Kalibrierung      5 von 5 pruefbaren Vorhersagen (2025)      bestanden
+ERGEBNIS: v1 darf live gehen.
+```
+
+**Ehrlicher Vorbehalt:** Die fünf Treffer stammen aus *einem* Prüfjahr, und zwei Intervalle sind sehr weit (Werkstatt ±44 %, Zeugnis ±43 %). §14.2 erlaubt weite Intervalle, solange sie ehrlich sind — aber ein Panel, das "Chance rund 64 % ± 44 %" sagt, ist für den Heimat-Zeugnis-Antragsteller kaum eine Auskunft. Das Frühjahr 2027 (nächste Vorlage) bringt das zweite Prüfjahr.
+
 ## Nächster konkreter Schritt
 
-**Entscheidung von Felix** (siehe unten), dann entweder §14.2 präzisieren oder die IFG-Anfrage für 2020 stellen. Keine Programmierarbeit, bevor das entschieden ist — sonst wird die Hürde stillschweigend gelockert, und genau das verbietet der Plan.
+**Teil 2 planen** — mit `superpowers:brainstorming`, nicht direkt mit einem Plan. Offene Designfragen: der Spiegel (§5.1), das öffentliche Register (§5.4) als statische Seite aus `daten/register.csv`, und wie das Panel mit weiten Intervallen umgeht (Zahl zeigen, Zahl verstecken, oder Intervall statt Punktwert?). Vorher: privates GitHub-Repo anlegen und pushen — damit das Urteil außer Haus datiert ist.
 
 ## Wartet auf Felix
 
-- **Hürde 2 — präzisieren oder Daten holen?** Zwei ehrliche Wege, ein unehrlicher:
-  - *Präzisieren:* Die Kalibrierung zählt nur Vorhersagen, denen mindestens drei belegte Vorjahre zugrunde liegen; 2019 und 2021 wären dann keine Prüfjahre, sondern Lernjahre, und das Panel zeigt für Kombinationen mit weniger Jahren keine Zahl. Das ist eine Änderung an §14.2 und gehört datiert in die Spec.
-  - *Daten holen:* IFG-Anfrage für 2020 (und 2022). Mit 2020 sähe die Prognose den Einbruch ein Jahr früher. Ein Monat Frist, 10–500 € Risiko. Ändert nichts an 2019.
-  - *Unehrlich wäre:* das Intervall so weit aufblasen, bis 2021 hineinfällt. Dann hält die Hürde, aber die Zahl sagt nichts mehr.
+- ~~Hürde 2 — präzisieren oder Daten holen?~~ Entschieden 26.08.: präzisieren (siehe fünftes Urteil). Die IFG-Anfrage 2020/2022 bleibt als spätere Option offen — sie würde zwei weitere Prüfjahre bringen.
+- **Weite Intervalle im Panel:** Werkstatt und Zeugnis liegen bei ±43 %. Zeigen, verstecken, oder Intervall statt Punktwert? Gehört ins Brainstorming für Teil 2.
 - **Remote anlegen:** privates GitHub-Repo (entschieden 26.08.). Historie seit 26.08. frei von Klarnamen (0 Treffer über alle Commits). Push ist freigegeben — braucht nur dein GitHub-Login.
 
 ## Entschieden am 2026-08-26

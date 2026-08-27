@@ -91,7 +91,7 @@ def _export(_args) -> int:
 
     daten = exportieren(PANEL)
     print(PANEL, "-", len(daten["register"]), "Registerzeilen,", len(daten["regeln"]), "Regeln,",
-          "Stand", daten["stand"]["datum"], "Korpus", daten["stand"]["korpus_commit"])
+          "Stand", daten["stand"]["datum"], "Korpus", daten["stand"]["korpus_sha256"])
     return 0
 
 

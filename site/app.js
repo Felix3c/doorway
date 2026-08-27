@@ -218,8 +218,8 @@ async function start() {
 
   const st = daten.stand;
   const lock = Object.keys(st.quellen_lock || {}).length;
-  $("stand").textContent = `Stand ${st.datum} · Korpus ${st.korpus_commit} · ${lock} Quelldokumente per Prüfsumme eingefroren`;
-  $("stand-lang").textContent = `Jede Zahl auf dieser Seite stammt aus daten/panel.json, erzeugt am ${st.datum} aus dem Korpus im Commit ${st.korpus_commit}. Was dort nicht steht, steht auch hier nicht.`;
+  $("stand").textContent = `Stand ${st.datum} · Korpus ${st.korpus_sha256} · ${lock} Quelldokumente per Prüfsumme eingefroren`;
+  $("stand-lang").textContent = `Jede Zahl auf dieser Seite stammt aus daten/panel.json, erzeugt am ${st.datum} aus dem Korpus mit der Prüfsumme ${st.korpus_sha256}. Was dort nicht steht, steht auch hier nicht.`;
 
   optionen($("f-typ"), TYPEN, "typ", vorschlagen);
   optionen($("f-betrag"), BETRAEGE, "betrag", vorschlagen);

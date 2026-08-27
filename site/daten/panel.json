@@ -2088,7 +2088,7 @@
  },
  "stand": {
   "datum": "2026-08-27",
-  "korpus_commit": "61538a7",
+  "korpus_sha256": "c98452bb8ba8",
   "quellen_lock": {
    "drs-17-9738": "379b5e52717eeb010fba970394abce9d400558bbc57cce2afa1de6281ce65500",
    "vorl-17-2268": "34e99d6e054ff9e1b350839027560df62ff4adb75c688a56a7d1450a82bfef2e",

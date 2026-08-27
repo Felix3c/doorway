@@ -8,7 +8,6 @@ Die Ausschlussregeln werden exportiert, nicht abgeschrieben: eine Quelle,
 
 import json
 import re
-import subprocess
 from collections import Counter, defaultdict
 from dataclasses import asdict
 from datetime import date
@@ -17,6 +16,7 @@ from statistics import median
 
 from . import korpus as k
 from .basisrate import MINDESTJAHRE
+from .laden import pruefsumme
 from .prognose import beurteilen
 from .quellen import QUELLEN
 from .regeln import REGELN, pruefen
@@ -58,7 +58,7 @@ ERLAUBTE_FELDER = {
     "elemente": ("bewilligt_mit_betrag", "median_betrag", "typen"),
     "vorschlag": (),
     "quellen": ("dokument", "url", "datum", "beschreibung"),
-    "stand": ("datum", "korpus_commit", "quellen_lock"),
+    "stand": ("datum", "korpus_sha256", "quellen_lock"),
 }
 
 _JS_FREMD = re.compile(r"\(\?<[=!]|\(\?P<|\(\?[a-zA-Z]+\)|\\p\{|[+*?}]\+|\(\?>")
@@ -151,12 +151,11 @@ def _schaetzungen_block(register) -> dict:
     return block
 
 
-def _korpus_commit(korpus: Path) -> str:
-    ergebnis = subprocess.run(
-        ["git", "log", "-1", "--format=%h", "--", str(korpus)],
-        capture_output=True, text=True, check=False,
-    )
-    return ergebnis.stdout.strip() or "unversioniert"
+def _korpus_pruefsumme(korpus: Path) -> str:
+    """SHA-256 des Korpus-Inhalts, gekuerzt. Ein Git-Commit taugt hier nicht:
+    panel.json wird zusammen mit dem Korpus committet und kann den eigenen
+    Commit nie kennen. Der Inhalts-Hash ist ohne Git nachpruefbar."""
+    return pruefsumme(korpus)[:12]
 
 
 def exportieren(ziel: Path, korpus: Path = Path("daten/korpus.jsonl"),
@@ -180,7 +179,7 @@ def exportieren(ziel: Path, korpus: Path = Path("daten/korpus.jsonl"),
         },
         "stand": {
             "datum": date.today().isoformat(),
-            "korpus_commit": _korpus_commit(korpus),
+            "korpus_sha256": _korpus_pruefsumme(korpus),
             "quellen_lock": json.loads(lock.read_text(encoding="utf-8")) if lock.exists() else {},
         },
     }

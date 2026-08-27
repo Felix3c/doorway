@@ -113,4 +113,4 @@ def test_der_export_hat_fuenf_schaetzungen_und_einen_stand(tmp_path):
     assert daten["schaetzungen"]["Heimat-Scheck"]["darstellung"] == "punkt"
     assert daten["schaetzungen"]["Heimat-Zeugnis"]["darstellung"] == "spanne"
     assert re.fullmatch(r"\d{4}-\d{2}-\d{2}", daten["stand"]["datum"])
-    assert re.fullmatch(r"[0-9a-f]{7,40}", daten["stand"]["korpus_commit"])
+    assert re.fullmatch(r"[0-9a-f]{12}", daten["stand"]["korpus_sha256"])

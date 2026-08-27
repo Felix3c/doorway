@@ -1,9 +1,10 @@
 # Doorway — Nächste Schritte
 
-**Stand:** 2026-08-26 (§14.2 präzisiert, fünftes Urteil: **beide Hürden halten, v1 darf live gehen**; Historie bereinigt; Repo wird privat)
+**Stand:** 2026-08-27 (Teil 2 gebaut: `doorway export` + statische Seite in `site/`, im Browser geprüft; Kill-Kriterium weiterhin bestanden)
 **Führendes Dokument:** `docs/superpowers/specs/2026-08-24-doorway-design.md` (Präambel mit Leitsatz seit 25.08.)
 **Plan Teil 1:** `docs/superpowers/plans/2026-08-25-doorway-ernte-und-urteil.md` — alle 13 Tasks erledigt
-**Phase:** Teil 1 abgeschlossen, Kill-Kriterium bestanden. Als Nächstes wird Teil 2 geplant (Spiegel, Weboberfläche, öffentliches Register).
+**Phase:** Teil 2 gebaut und lokal geprüft. Es fehlt nur noch die Veröffentlichung (privates Repo, GitHub Pages) und Felix' Blick auf die Seite.
+**Design Teil 2:** `docs/superpowers/specs/2026-08-27-doorway-teil-2-design.md`
 
 ---
 
@@ -63,14 +64,23 @@ ERGEBNIS: v1 darf live gehen.
 
 **Ehrlicher Vorbehalt:** Die fünf Treffer stammen aus *einem* Prüfjahr, und zwei Intervalle sind sehr weit (Werkstatt ±44 %, Zeugnis ±43 %). §14.2 erlaubt weite Intervalle, solange sie ehrlich sind — aber ein Panel, das "Chance rund 64 % ± 44 %" sagt, ist für den Heimat-Zeugnis-Antragsteller kaum eine Auskunft. Das Frühjahr 2027 (nächste Vorlage) bringt das zweite Prüfjahr.
 
+## Teil 2 gebaut (27.08.2026)
+
+- `doorway export` → `site/daten/panel.json` (git-versioniert): Register, Schätzungen je Element mit `darstellung` punkt/spanne/keine (Schwelle ±20 Punkte), exportierte Regeln samt Beispielen, Elementprofile aus dem Korpus, Vorschlagstabelle, Quellen, Stand mit SHA-256 des Korpus.
+- `site/index.html`, `stil.css`, `app.js`, `regeln.mjs` — kein Framework, kein Build. Spiegel mit vier geführten Fragen plus Freitext; Panel in derselben Form wie die CLI; Register-Tabelle mit Filter, Herkunft, Gründen, Quelle+Seite; Fuß mit den Quellen-URLs.
+- `node site/pruefung.mjs` prüft, dass die JS-Regelauswertung die Python-Beispiele reproduziert (Exit 1 sonst); `app.js` macht dieselbe Prüfung beim Laden und verweigert sonst die Ausschlussprüfung.
+- Im Browser geprüft (lokaler Server): Trikots → "Chance nahe null" mit Regel; Ortsarchiv → "Chance rund 64 % (± 13)", 3 von 3 bestanden; keine Konsolenfehler.
+- Dabei gefunden und behoben: Der 2025-Extraktor schnitt das erste Wort jedes Ablehnungsgrunds ab (Spaltengrenze 950 statt 920). Zählungen unverändert. 128 Tests.
+
 ## Nächster konkreter Schritt
 
-**Teil 2 planen** — mit `superpowers:brainstorming`, nicht direkt mit einem Plan. Offene Designfragen: der Spiegel (§5.1), das öffentliche Register (§5.4) als statische Seite aus `daten/register.csv`, und wie das Panel mit weiten Intervallen umgeht (Zahl zeigen, Zahl verstecken, oder Intervall statt Punktwert?). Vorher: privates GitHub-Repo anlegen und pushen — damit das Urteil außer Haus datiert ist.
+**Veröffentlichen:** privates GitHub-Repo anlegen (`gh` ist nicht installiert — `winget install GitHub.cli`, dann `gh auth login`, oder Repo im Browser anlegen und die URL nennen), pushen, GitHub Pages auf den Ordner `site/` zeigen lassen. Zum lokalen Anschauen: `cd site && python -m http.server 8765`, dann `http://127.0.0.1:8765/`.
 
 ## Wartet auf Felix
 
 - ~~Hürde 2 — präzisieren oder Daten holen?~~ Entschieden 26.08.: präzisieren (siehe fünftes Urteil). Die IFG-Anfrage 2020/2022 bleibt als spätere Option offen — sie würde zwei weitere Prüfjahre bringen.
-- **Weite Intervalle im Panel:** Werkstatt und Zeugnis liegen bei ±43 %. Zeigen, verstecken, oder Intervall statt Punktwert? Gehört ins Brainstorming für Teil 2.
+- ~~Weite Intervalle im Panel~~ — entschieden 27.08.: Spanne statt Punktwert ab ±20 Punkten (Spec Teil 2, §2).
+- **Die Seite ansehen.** Abschnitte 2–4 des Teil-2-Designs habe ich ohne dich entschieden (Fragen, Wortlaut, Schwelle). Was dir nicht gefällt, ist ein Abend Arbeit, kein Umbau.
 - **Remote anlegen:** privates GitHub-Repo (entschieden 26.08.). Historie seit 26.08. frei von Klarnamen (0 Treffer über alle Commits). Push ist freigegeben — braucht nur dein GitHub-Login.
 
 ## Entschieden am 2026-08-26

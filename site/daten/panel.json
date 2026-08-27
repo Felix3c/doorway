@@ -1684,9 +1684,9 @@
    "abgelehnt": 6,
    "foerdervolumen_euro": null,
    "ablehnungsgruende": {
-    "nicht den Förderkriterien": 4,
-    "Instandhaltungsmaßnahme": 1,
-    "Maßnahmenbeginn": 1
+    "entspricht nicht den Förderkriterien": 4,
+    "reine Instandhaltungsmaßnahme": 1,
+    "vorzeitiger Maßnahmenbeginn": 1
    },
    "herkunft": "gezaehlt",
    "quelle_id": "vorl-18-5027",
@@ -1718,13 +1718,14 @@
    "abgelehnt": 330,
    "foerdervolumen_euro": null,
    "ablehnungsgruende": {
-    "nicht den Förderkriterien": 263,
-    "Maßnahme": 27,
-    "Ausstattung": 23,
-    "Instandhaltungsmaßnahme": 6,
-    "nicht prüffähig": 5,
-    "antragsberechtigt": 4,
-    "Maßnahmenbeginn": 1,
+    "entspricht nicht den Förderkriterien": 263,
+    "vereinsübliche Ausstattung": 23,
+    "vereinsinterne Maßnahme": 20,
+    "wiederkehrende Maßnahme": 7,
+    "reine Instandhaltungsmaßnahme": 6,
+    "Antrag nicht prüffähig": 5,
+    "nicht antragsberechtigt": 4,
+    "vorzeitiger Maßnahmenbeginn": 1,
     "1": 1
    },
    "herkunft": "gezaehlt",
@@ -1742,8 +1743,8 @@
    "abgelehnt": 9,
    "foerdervolumen_euro": null,
    "ablehnungsgruende": {
-    "nicht den Förderkriterien": 6,
-    "antragsberechtigt": 3
+    "entspricht nicht den Förderkriterien": 6,
+    "nicht antragsberechtigt": 3
    },
    "herkunft": "gezaehlt",
    "quelle_id": "vorl-18-5027",
@@ -1760,9 +1761,9 @@
    "abgelehnt": 6,
    "foerdervolumen_euro": null,
    "ablehnungsgruende": {
-    "nicht den Förderkriterien": 4,
-    "Maßnahme": 1,
-    "antragsberechtigt": 1
+    "entspricht nicht den Förderkriterien": 4,
+    "wiederkehrende Maßnahme": 1,
+    "nicht antragsberechtigt": 1
    },
    "herkunft": "gezaehlt",
    "quelle_id": "vorl-18-5027",
@@ -1786,13 +1787,14 @@
    "belegte_jahre": 4,
    "darstellung": "punkt",
    "gruende": {
-    "nicht den Förderkriterien": 263,
-    "Maßnahme": 27,
-    "Ausstattung": 23,
-    "Instandhaltungsmaßnahme": 6,
-    "nicht prüffähig": 5,
-    "antragsberechtigt": 4,
-    "Maßnahmenbeginn": 1,
+    "entspricht nicht den Förderkriterien": 263,
+    "vereinsübliche Ausstattung": 23,
+    "vereinsinterne Maßnahme": 20,
+    "wiederkehrende Maßnahme": 7,
+    "reine Instandhaltungsmaßnahme": 6,
+    "Antrag nicht prüffähig": 5,
+    "nicht antragsberechtigt": 4,
+    "vorzeitiger Maßnahmenbeginn": 1,
     "1": 1
    },
    "beleg": "vorl-18-5027, Seite 15"
@@ -1831,9 +1833,9 @@
    "belegte_jahre": 4,
    "darstellung": "punkt",
    "gruende": {
-    "nicht den Förderkriterien": 4,
-    "Instandhaltungsmaßnahme": 1,
-    "Maßnahmenbeginn": 1
+    "entspricht nicht den Förderkriterien": 4,
+    "reine Instandhaltungsmaßnahme": 1,
+    "vorzeitiger Maßnahmenbeginn": 1
    },
    "beleg": "vorl-18-5027, Seite 15"
   },
@@ -1852,8 +1854,8 @@
    "belegte_jahre": 4,
    "darstellung": "spanne",
    "gruende": {
-    "nicht den Förderkriterien": 6,
-    "antragsberechtigt": 3
+    "entspricht nicht den Förderkriterien": 6,
+    "nicht antragsberechtigt": 3
    },
    "beleg": "vorl-18-5027, Seite 15"
   },
@@ -1872,9 +1874,9 @@
    "belegte_jahre": 4,
    "darstellung": "spanne",
    "gruende": {
-    "nicht den Förderkriterien": 4,
-    "Maßnahme": 1,
-    "antragsberechtigt": 1
+    "entspricht nicht den Förderkriterien": 4,
+    "wiederkehrende Maßnahme": 1,
+    "nicht antragsberechtigt": 1
    },
    "beleg": "vorl-18-5027, Seite 15"
   }

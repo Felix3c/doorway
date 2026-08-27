@@ -20,8 +20,11 @@ SPALTEN = {
     "vorhabentext": (260.0, 570.0),
     "_foerdernehmende": (570.0, 830.0),
     "betrag": (830.0, 870.0),
-    "status": (870.0, 950.0),
-    "ablehnungsgrund_roh": (950.0, 2000.0),
+    # Die Ablehnungsmarke "x" steht bei x=903, der Grund beginnt bei x=935.
+    # Eine Grenze bei 950 schnitt das erste Wort jedes Grundes ab
+    # ("nicht den Foerderkriterien" statt "entspricht nicht ...").
+    "status": (870.0, 920.0),
+    "ablehnungsgrund_roh": (920.0, 2000.0),
 }
 
 ELEMENTE = {

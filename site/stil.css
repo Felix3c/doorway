@@ -1,0 +1,42 @@
+:root { --tinte: #1b1b1b; --grau: #666; --linie: #ddd; --hell: #f6f5f2; --gut: #2d6a4f; --schlecht: #9b2226; --offen: #7a6a00; }
+* { box-sizing: border-box; }
+body { margin: 0 auto; max-width: 56rem; padding: 1.5rem 1rem 4rem; font: 17px/1.5 Georgia, "Times New Roman", serif; color: var(--tinte); background: #fff; }
+header h1 { font-size: 2.2rem; margin: 0 0 .25rem; letter-spacing: .02em; }
+.claim { margin: 0 0 .5rem; font-size: 1.1rem; }
+.stand { color: var(--grau); font-size: .9rem; font-family: ui-monospace, Consolas, monospace; }
+h2 { font-size: 1.35rem; margin: 2.5rem 0 .75rem; border-bottom: 1px solid var(--linie); padding-bottom: .25rem; }
+fieldset { border: 0; padding: 0; margin: 1.25rem 0; }
+legend { font-weight: bold; padding: 0; margin-bottom: .4rem; }
+.optional { font-weight: normal; color: var(--grau); }
+.hinweis { color: var(--grau); font-size: .95rem; margin: .25rem 0 .5rem; }
+.optionen { display: flex; flex-wrap: wrap; gap: .5rem; }
+.optionen button { font: inherit; padding: .45rem .8rem; border: 1px solid var(--linie); background: var(--hell); border-radius: .4rem; cursor: pointer; text-align: left; }
+.optionen button[aria-pressed="true"] { border-color: var(--tinte); background: #fff; box-shadow: inset 0 0 0 1px var(--tinte); }
+.optionen button small { display: block; color: var(--grau); font-size: .85rem; }
+input[type=text] { width: 100%; font: inherit; padding: .5rem .6rem; border: 1px solid var(--linie); border-radius: .4rem; }
+#panel { margin-top: 2rem; }
+.karte { border: 1px solid var(--tinte); border-radius: .5rem; padding: 1.25rem 1.5rem; background: var(--hell); }
+.karte .kopf { font-family: ui-monospace, Consolas, monospace; font-size: .85rem; letter-spacing: .08em; text-transform: uppercase; color: var(--grau); }
+.karte .urteil { font-size: 1.5rem; margin: .5rem 0 .25rem; }
+.karte .urteil.gut { color: var(--gut); } .karte .urteil.schlecht { color: var(--schlecht); } .karte .urteil.offen { color: var(--offen); }
+.karte .basis { color: var(--grau); margin: 0 0 1rem; }
+.karte h3 { font-size: 1rem; margin: 1.25rem 0 .4rem; }
+.karte ul { list-style: none; padding: 0; margin: 0; }
+.karte li { padding: .15rem 0; }
+.karte li .haken { display: inline-block; width: 1.4rem; font-family: ui-monospace, Consolas, monospace; }
+.karte li.getroffen { color: var(--schlecht); font-weight: bold; }
+.gruende li { display: flex; justify-content: space-between; gap: 1rem; border-bottom: 1px dotted var(--linie); }
+.gruende li.dein-fall { font-weight: bold; }
+.beleg { margin-top: 1.25rem; font-family: ui-monospace, Consolas, monospace; font-size: .85rem; color: var(--grau); }
+.fehler { border: 1px solid var(--schlecht); color: var(--schlecht); padding: .75rem 1rem; border-radius: .4rem; }
+.filter { display: flex; gap: 1.5rem; margin: .5rem 0 1rem; }
+.filter select { font: inherit; }
+.tabelle-rahmen { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: .95rem; }
+th, td { text-align: left; padding: .35rem .5rem; border-bottom: 1px solid var(--linie); vertical-align: top; }
+th.zahl, td.zahl { text-align: right; font-variant-numeric: tabular-nums; }
+tr.konflikt td { background: #fff7e0; }
+td details summary { cursor: pointer; color: var(--grau); }
+footer { margin-top: 3rem; color: var(--grau); font-size: .95rem; }
+footer h2 { font-size: 1.1rem; }
+footer ul { padding-left: 1.2rem; }

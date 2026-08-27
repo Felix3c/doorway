@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Doorway — sagt vor der Tür, wie die Chancen stehen</title>
+<link rel="stylesheet" href="stil.css">
+</head>
+<body>
+<header>
+  <h1>Doorway</h1>
+  <p class="claim">Sagt vor der Tür, wie die Chancen stehen — belegt aus den Berichten des Landes Nordrhein-Westfalen zur Heimatförderung.</p>
+  <p id="stand" class="stand">Lade Daten …</p>
+</header>
+
+<main>
+  <section id="spiegel" aria-labelledby="spiegel-titel">
+    <h2 id="spiegel-titel">Wo steht ihr?</h2>
+    <p class="hinweis">Nichts, was du hier eingibst, verlässt deinen Browser. Es wird nichts gespeichert.</p>
+
+    <fieldset>
+      <legend>1. Wer stellt den Antrag?</legend>
+      <div class="optionen" id="f-typ"></div>
+    </fieldset>
+
+    <fieldset>
+      <legend>2. Wie viel Geld braucht ihr ungefähr?</legend>
+      <div class="optionen" id="f-betrag"></div>
+    </fieldset>
+
+    <fieldset id="fs-element">
+      <legend>3. Das passt zu …</legend>
+      <p class="hinweis" id="vorschlag-text"></p>
+      <div class="optionen" id="f-element"></div>
+    </fieldset>
+
+    <fieldset id="fs-mehrfach" hidden>
+      <legend>4. Habt ihr in diesem Jahr schon einen Heimat-Scheck beantragt?</legend>
+      <div class="optionen" id="f-mehrfach"></div>
+    </fieldset>
+
+    <fieldset>
+      <legend>5. Was habt ihr vor? <span class="optional">(freiwillig, ein Satz genügt)</span></legend>
+      <input type="text" id="f-vorhaben" placeholder="z. B. Restaurierung der alten Fahne, neue Homepage, Chronik zum Jubiläum" autocomplete="off">
+      <p class="hinweis">Der Text wird nur gegen die bekannten Ausschlussgründe geprüft — im Browser, nirgends sonst.</p>
+    </fieldset>
+  </section>
+
+  <section id="panel" aria-live="polite"></section>
+
+  <section id="register" aria-labelledby="register-titel">
+    <h2 id="register-titel">Das Nein-Register</h2>
+    <p>Je Förderelement und Jahr: wie viele Anträge, wie viele Bewilligungen, wie viele Ablehnungen, woran es scheiterte. Jede Zahl trägt ihre Herkunft — <em>gezählt</em> aus einer Anlage mit Einzelentscheidungen, <em>gemessen</em> aus einer Übersicht des Ministeriums, oder <em>Konflikt</em>, wenn beides vorliegt und sich widerspricht.</p>
+    <div class="filter">
+      <label>Element <select id="filter-element"><option value="">alle</option></select></label>
+      <label>Jahr <select id="filter-jahr"><option value="">alle</option></select></label>
+    </div>
+    <div class="tabelle-rahmen"><table id="register-tabelle">
+      <thead><tr><th>Jahr</th><th>Element</th><th>Stelle</th><th class="zahl">Anträge</th><th class="zahl">bewilligt</th><th class="zahl">abgelehnt</th><th class="zahl">Quote</th><th>Herkunft</th><th>Quelle</th></tr></thead>
+      <tbody></tbody>
+    </table></div>
+  </section>
+</main>
+
+<footer>
+  <h2>Was Doorway nicht tut</h2>
+  <p>Keine Antragstexte, keine Beratung, keine Bewertung von Behörden, keine Namen abgelehnter Antragsteller. Doorway sagt, wie die Chancen stehen und woran Anträge wie deiner gescheitert sind — nicht mehr.</p>
+  <h2>Quellen</h2>
+  <ul id="quellen"></ul>
+  <p class="stand" id="stand-lang"></p>
+</footer>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>

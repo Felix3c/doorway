@@ -16,6 +16,7 @@ LOCK = Path("daten/quellen.lock.json")
 KORPUS = Path("daten/korpus.jsonl")
 REGISTER_CSV = Path("daten/register.csv")
 REGISTER_JSON = Path("daten/register.json")
+PANEL = Path("site/daten/panel.json")
 GOLDEN = Path("golden")
 
 
@@ -85,6 +86,15 @@ def _kill_kriterium(_args) -> int:
     return 0 if bericht.bestanden else 1
 
 
+def _export(_args) -> int:
+    from .export import exportieren
+
+    daten = exportieren(PANEL)
+    print(PANEL, "-", len(daten["register"]), "Registerzeilen,", len(daten["regeln"]), "Regeln,",
+          "Stand", daten["stand"]["datum"], "Korpus", daten["stand"]["korpus_commit"])
+    return 0
+
+
 def main(argv=None) -> int:
     p = argparse.ArgumentParser(prog="doorway")
     unter = p.add_subparsers(dest="befehl", required=True)
@@ -94,6 +104,7 @@ def main(argv=None) -> int:
     unter.add_parser(
         "kill-kriterium", help="Prueft beide Huerden aus Paragraph 14.2"
     ).set_defaults(fn=_kill_kriterium)
+    unter.add_parser("export", help="Schreibt site/daten/panel.json fuer die Seite").set_defaults(fn=_export)
 
     pr = unter.add_parser("prognose", help="Prognose fuer ein Vorhaben")
     pr.add_argument("vorhaben")

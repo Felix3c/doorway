@@ -74,7 +74,7 @@ ERGEBNIS: v1 darf live gehen.
 
 ## Nächster konkreter Schritt
 
-**Veröffentlichen:** privates GitHub-Repo anlegen (`gh` ist nicht installiert — `winget install GitHub.cli`, dann `gh auth login`, oder Repo im Browser anlegen und die URL nennen), pushen, GitHub Pages auf den Ordner `site/` zeigen lassen. Zum lokalen Anschauen: `cd site && python -m http.server 8765`, dann `http://127.0.0.1:8765/`.
+**Pages einschalten** (28.08.: Repo `github.com/Felix3c/doorway` ist öffentlich und gepusht): Settings → Pages → Source "Deploy from a branch" → Branch `master`, Ordner `/site` → Save. Nach ein bis zwei Minuten liegt die Seite unter `https://felix3c.github.io/doorway/`. Dann diese URL hier und in `REIHENFOLGE.txt` eintragen, und im Fuß der Seite (`site/index.html`) den Hinweis auf das Repo ergänzen.
 
 ## Wartet auf Felix
 

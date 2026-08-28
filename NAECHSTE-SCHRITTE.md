@@ -86,7 +86,7 @@ ERGEBNIS: v1 darf live gehen.
 ## Entschieden am 2026-08-26
 
 - **Git-Historie bereinigt.** Das Golden File `golden/drs-17-9738.json` trug in den Commits vom 25.08. den Klarnamen einer Privatperson (Antragsteller-Spalte der Drs 17/9738). Alle Commits per `filter-branch` umgeschrieben, Sicherungs-Refs gelöscht, `gc --prune=now`; `git log -p --all` findet den Namen nicht mehr. Hashes ab dem Extraktor-Commit haben sich geändert (alt `2647a73`, neu `1344894`).
-- **Repo wird privat, Korpus bleibt versioniert.** `daten/korpus.jsonl` ist intern (§13.1); ein privates Repo veröffentlicht nichts, und der Korpus bleibt als Diff nachvollziehbar. Öffentlich wird später nur das Register.
+- ~~Repo wird privat, Korpus bleibt versioniert.~~ Geändert 28.08.: öffentlich wie belegt, damit Pages kostenlos ist (Spec §13.1). `daten/korpus.jsonl` ist intern (§13.1); ein privates Repo veröffentlicht nichts, und der Korpus bleibt als Diff nachvollziehbar. Öffentlich wird später nur das Register.
 - **Stufe 2: Mindestintervall zuerst,** IFG-Anfrage 2020/2022 erst, wenn Hürde 2 danach immer noch reißt.
 
 ## Blocker

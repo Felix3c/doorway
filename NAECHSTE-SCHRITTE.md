@@ -1,6 +1,6 @@
 # Doorway — Nächste Schritte
 
-**Stand:** 2026-08-29 (Seite ist live unter https://felix3c.github.io/doorway/ ; Repo öffentlich; ai-firma gelöscht)
+**Stand:** 2026-09-01 (Zielbild neu gefasst, siehe unten; Seite unverändert) (Seite ist live unter https://felix3c.github.io/doorway/ ; Repo öffentlich; ai-firma gelöscht)
 **Führendes Dokument:** `docs/superpowers/specs/2026-08-24-doorway-design.md` (Präambel = Leitsatz); Teil 2: `docs/superpowers/specs/2026-08-27-doorway-teil-2-design.md`
 **Phase:** Teil 1 und Teil 2 abgeschlossen und veröffentlicht. Vor Teil 3 steht keine Programmierarbeit, sondern Felix' Urteil über die Seite und die Frage, was als Nächstes den Leitsatz am stärksten voranbringt.
 
@@ -11,6 +11,35 @@
 > Wer hat wann was entschieden, mit welchem Grund, mit welcher Fundstelle — und lässt sich das von außen prüfen, ohne uns glauben zu müssen?
 
 Übergeordnete These: `~/THESE.md`. Prüffrage für jedes Feature: *nachprüfbarer oder nur bequemer?*
+
+## Zielbild neu (01.09.2026, aus ~/GUARD.md Ebene 3 und FORMAT.md §8.4)
+
+**Doorway ist der Zugang zu allem, was Bindung belohnt.** Fördergeld war der erste Fall und
+bleibt der Brückenkopf; der Mechanismus ist allgemeiner: Wer etwas will, das andere vergeben
+— Geld, Genehmigung, Legitimität — hinterlegt vorab, datiert und öffentlich, was er erwartet.
+Doorway baut die Tür, durch die diese Hinterlegung läuft, und die Werkzeuge, mit denen die
+andere Seite (die vergibt) nachschauen kann. Der Kunde ist nie die gemessene Stelle als
+Betreiber-Auftraggeber, sondern wer sie zur Rechenschaft ziehen will oder wer sich selbst
+binden will, um etwas zu bekommen. Die Stadt ist das Produkt, nicht der Kunde.
+
+**Kundenliste, in Reihenfolge der Nähe:**
+1. Fördergeber (Bund, Land, Stiftungen) — verlangen hinterlegte Erwartung als Antragsbestandteil (KLAUSEL.md, Fassung C).
+2. Ratsopposition — braucht die Quote der Verwaltung, um Anfragen zu bauen (Mail an CDU-Fraktion Köln, 01.09.).
+3. Lokalpresse — braucht die Zahl, nicht die Einzelfrist (Mail an KStA, 01.09.).
+4. GPA NRW / Bezirksregierung / Kommunalaufsicht — prüfen Haushalte und könnten Trefferquote als Kriterium nehmen.
+5. Kreditgeber und Ratings (NRW.Bank, Sparkassen) — Verlässlichkeit einer Kommune als Datenfeld.
+6. Antragsteller selbst (Kommunen, Vereine, Träger), die sich binden wollen, um Vertrauen zu kaufen, das es sonst nicht gibt.
+
+**Regel (ersetzt „Doorway-Kunden stehen in keinem Buch, das Felix führt", 29.08.):** Doorway-Kunden,
+die Gemessene sind, stehen im Buch als `herkunft: hinterlegt` — sichtbar, gleich gezählt, zum
+veröffentlichten Festpreis, ohne Bedingungen an Auswahl, Übersetzung, Urteil. Doorway ist
+rechtlich getrennt vom gemeinnützigen Träger von festgehalten und lizenziert nur; Name und
+Format wandern nicht mit (FORMAT.md §8.4). Doorway führt kein anerkanntes Buch.
+
+**Was das für Teil 3 heißt:** Der Kandidat, der dem Zielbild am nächsten liegt, ist nicht die
+IFG-Anfrage (Vergangenheit), sondern **der Hinterlegungs-Pfad**: ein Formular/Datei, mit der ein
+Antragsteller eine Erwartung im festgehalten-Format erzeugt und an ein Buch übergibt — der
+technische Kern von Fassung C der Klausel. IFG bleibt zweiter Kandidat.
 
 ## Wo wir stehen
 

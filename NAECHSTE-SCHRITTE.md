@@ -1,8 +1,8 @@
 # Doorway — Nächste Schritte
 
-**Stand:** 2026-09-01 (Zielbild neu gefasst, siehe unten; Seite unverändert) (Seite ist live unter https://felix3c.github.io/doorway/ ; Repo öffentlich; ai-firma gelöscht)
-**Führendes Dokument:** `docs/superpowers/specs/2026-08-24-doorway-design.md` (Präambel = Leitsatz); Teil 2: `docs/superpowers/specs/2026-08-27-doorway-teil-2-design.md`
-**Phase:** Teil 1 und Teil 2 abgeschlossen und veröffentlicht. Vor Teil 3 steht keine Programmierarbeit, sondern Felix' Urteil über die Seite und die Frage, was als Nächstes den Leitsatz am stärksten voranbringt.
+**Stand:** 05.09.2026, nachts (Teil 3 entschieden, Spec und zwei Pläne geschrieben; noch keine Zeile Code für Teil 3)
+**Führendes Dokument:** `docs/superpowers/specs/2026-08-24-doorway-design.md` (Präambel = Leitsatz); Teil 2: `docs/superpowers/specs/2026-08-27-doorway-teil-2-design.md`; **Teil 3: `docs/superpowers/specs/2026-09-05-doorway-teil-3-hinterlegung-design.md`**
+**Phase:** Teil 1 und Teil 2 abgeschlossen und veröffentlicht. Teil 3 (Hinterlegungs-Pfad) ist von Felix bestätigt (02.09.), Design abgenommen (05.09.), Umsetzung noch nicht begonnen.
 
 ---
 
@@ -12,60 +12,55 @@
 
 Übergeordnete These: `~/THESE.md`. Prüffrage für jedes Feature: *nachprüfbarer oder nur bequemer?*
 
-## Zielbild neu (01.09.2026, aus ~/GUARD.md Ebene 3 und FORMAT.md §8.4)
+## Zielbild (01.09.2026, aus ~/GUARD.md Ebene 3 und FORMAT.md §8.4)
 
-**Doorway ist der Zugang zu allem, was Bindung belohnt.** Fördergeld war der erste Fall und
-bleibt der Brückenkopf; der Mechanismus ist allgemeiner: Wer etwas will, das andere vergeben
+**Doorway ist der Zugang zu allem, was Bindung belohnt.** Wer etwas will, das andere vergeben
 — Geld, Genehmigung, Legitimität — hinterlegt vorab, datiert und öffentlich, was er erwartet.
-Doorway baut die Tür, durch die diese Hinterlegung läuft, und die Werkzeuge, mit denen die
-andere Seite (die vergibt) nachschauen kann. Der Kunde ist nie die gemessene Stelle als
-Betreiber-Auftraggeber, sondern wer sie zur Rechenschaft ziehen will oder wer sich selbst
-binden will, um etwas zu bekommen. Die Stadt ist das Produkt, nicht der Kunde.
-
-**Kundenliste, in Reihenfolge der Nähe:**
-1. Fördergeber (Bund, Land, Stiftungen) — verlangen hinterlegte Erwartung als Antragsbestandteil (KLAUSEL.md, Fassung C).
-2. Ratsopposition — braucht die Quote der Verwaltung, um Anfragen zu bauen (Mail an CDU-Fraktion Köln, 01.09.).
-3. Lokalpresse — braucht die Zahl, nicht die Einzelfrist (Mail an KStA, 01.09.).
-4. GPA NRW / Bezirksregierung / Kommunalaufsicht — prüfen Haushalte und könnten Trefferquote als Kriterium nehmen.
-5. Kreditgeber und Ratings (NRW.Bank, Sparkassen) — Verlässlichkeit einer Kommune als Datenfeld.
-6. Antragsteller selbst (Kommunen, Vereine, Träger), die sich binden wollen, um Vertrauen zu kaufen, das es sonst nicht gibt.
-
-**Regel (ersetzt „Doorway-Kunden stehen in keinem Buch, das Felix führt", 29.08.):** Doorway-Kunden,
-die Gemessene sind, stehen im Buch als `herkunft: hinterlegt` — sichtbar, gleich gezählt, zum
-veröffentlichten Festpreis, ohne Bedingungen an Auswahl, Übersetzung, Urteil. Doorway ist
-rechtlich getrennt vom gemeinnützigen Träger von festgehalten und lizenziert nur; Name und
-Format wandern nicht mit (FORMAT.md §8.4). Doorway führt kein anerkanntes Buch.
-
-**Was das für Teil 3 heißt:** Der Kandidat, der dem Zielbild am nächsten liegt, ist nicht die
-IFG-Anfrage (Vergangenheit), sondern **der Hinterlegungs-Pfad**: ein Formular/Datei, mit der ein
-Antragsteller eine Erwartung im festgehalten-Format erzeugt und an ein Buch übergibt — der
-technische Kern von Fassung C der Klausel. IFG bleibt zweiter Kandidat.
+Doorway baut die Tür für diese Hinterlegung und die Werkzeuge für die Seite, die vergibt.
+Die Stadt ist das Produkt, nicht der Kunde. Kundenliste und Regel `herkunft: hinterlegt`:
+Commit ab2ad9a bzw. FORMAT.md §8.4.
 
 ## Wo wir stehen
 
-- **Live:** https://felix3c.github.io/doorway/ — Spiegel (vier Fragen + Freitext), Panel, Nein-Register, Quellen. Ausgeliefert per Actions-Workflow `.github/workflows/pages.yml` aus `site/`; jeder Push auf `master` veröffentlicht neu.
-- **Repo:** https://github.com/Felix3c/doorway, öffentlich (Entscheidung 28.08., Spec §13.1), 40 Commits, Arbeitsbaum sauber, alles gepusht. Historie frei von Klarnamen (bereinigt 26.08.). `research/` (401 MB Rohdaten) ist nicht im Repo.
-- **Werkzeug:** `doorway laden | ernten | prognose | kill-kriterium | export`. 128 Tests grün (zuletzt 27.08.), `node site/pruefung.mjs` grün.
-- **Kill-Kriterium (§14.2, präzisiert 26.08.):** beide Hürden bestanden — Hürde 1: 0/22 falsche Absagen; Hürde 2: 5 von 5 prüfbaren Vorhersagen (2025) im Intervall. Vorbehalt: ein Prüfjahr; Werkstatt/Zeugnis mit Intervall ±43 % (Seite zeigt dort Spanne statt Punktwert).
-- **Design:** "amtlich, aber schön" (28.08.), nur `site/stil.css`; Tokens am Dateianfang.
-- **Nebenbei am 28.08.:** `~/ai-firma` (SiteWerk) auf Felix' Wunsch komplett in den Papierkorb — kein Projekt mehr.
+- **Live:** https://felix3c.github.io/doorway/ — Spiegel, Panel, Nein-Register, Quellen.
+  Von Felix abgenommen 01.09.
+- **Repo:** https://github.com/Felix3c/doorway, öffentlich. 128 Tests grün (zuletzt 27.08.),
+  Kill-Kriterium bestanden.
+- **Teil 3 ist entschieden: der Hinterlegungs-Pfad.** Eine Seite `hinterlegen.html`, die aus
+  sieben Antworten eine Datei im festgehalten-Format erzeugt und sie als vorausgefüllten
+  Pull Request, Download oder Mail an ein Buch im Repo festgehalten übergibt. Kein Server,
+  keine Speicherung, Doorway führt kein Buch; der Merge-Commit ist die Hinterlegung.
+- **Die sechs Befunde der Probe (01.09.) sind beantwortet** (Spec §1): Quelle immer gefüllt;
+  Bedingung mit Frist im Vermerk, Verfall = Prüfdatum + 6 Monate; Formular erzwingt den
+  öffentlichen Ort des Nachweises; Zielbuch = Buch der Institution, sonst Sammelbuch
+  „Hinterlegt"; Halter hinterlegt nicht im eigenen Buch; Festpreis 0 Euro bis zwei
+  Registereinträge vorliegen. Keine Formatänderung.
+- **Zwei Pläne, in dieser Reihenfolge auszuführen:**
+  1. `~/wettbuch/docs/superpowers/plans/2026-09-05-hinterlegt-sammelbuch-und-buchliste.md`
+     (festgehalten: Sammelbuch, `buecher.json`, PR-Prüf-Workflow, Generator baut leeres Buch)
+  2. `docs/superpowers/plans/2026-09-05-doorway-teil-3-hinterlegung.md`
+     (Doorway: Modul, Seite, Entwurf, Status, Rundlauf-Test, Messung, Abnahme)
+- Probe-Dateien `research/hinterlegung-probe/` bleiben privat und gitignored.
+  `lind-2026-001` ist Probe, nicht Teil 3.
 
 ## Nächster konkreter Schritt
 
-**Felix schaut sich die Live-Seite an und sagt, was falsch, unklar oder hässlich ist.** Alles, was dann kommt, ist Feinarbeit an `site/` oder eine neue Designentscheidung — kein Umbau. Erst danach die Frage nach Teil 3 stellen (Kandidaten laut Teil-2-Spec §5: IFG-Anfrage 2020/2022 für zwei weitere Prüfjahre; Bezirksregierung im Spiegel; Extraktoren für `vorl-17-2268` und `vorl-18-2806` für die Gründeverteilung; Nutzermeldungen mit Scoring Rule).
+**Plan 1 ausführen** (im Repo `~/wettbuch`, superpowers:subagent-driven-development oder
+executing-plans), dann Plan 2. Beide Pläne sind mit Tests und Commit-Schritten geschrieben.
 
 ## Wartet auf Felix
 
-- Urteil über die Live-Seite (Wortlaut der Fragen, ±20-Schwelle, Farben — alles Abschnitt 2–4 der Teil-2-Spec, von Claude allein entschieden).
-- Was Teil 3 wird (siehe oben). Empfehlung: IFG-Anfrage zuerst, weil sie am längsten dauert und nichts blockiert.
+- **Mailadresse für `einreichung`** im Sammelbuch (Plan 1, Task 4). Ohne sie fehlt in Doorway
+  nur der Mail-Knopf; PR und Download gehen trotzdem.
+- **Abnahme am Ende von Plan 2:** erfundener Fall durchklicken bis zum Probelauf-PR im
+  Sammelbuch, PR schließen.
 
 ## Blocker
 
-Keiner.
+Keine.
 
 ## Wie eine neue Session hier einsteigt
 
-1. Beide Specs lesen, Präambel zuerst.
-2. `python -m pytest -q` (128 grün) und `PYTHONPATH=src python -m doorway.cli kill-kriterium` (beide Hürden bestanden).
-3. Lokal ansehen: `cd site && python -m http.server 8765` → http://127.0.0.1:8765/ — Hintergrundprozesse aus der Session werden beendet, im Zweifel per PowerShell `Start-Process` starten.
-4. Nichts an Teil 3 anfangen, bevor Felix die Seite abgenommen hat.
+1. Teil-3-Spec lesen, dann den Plan, der dran ist (Stand oben).
+2. `python -m pytest -q` (128 grün) und `node site/pruefung.mjs` (grün).
+3. Nichts an der Seite ändern, was nicht in der Spec steht; Abweichungen in die Spec schreiben.

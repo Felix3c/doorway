@@ -139,7 +139,8 @@ bleibt optionales Feld. §8.3 wird nicht ausgelöst.
 `BUCH.md` mit Titel „Hinterlegt", Halter Felix Lind, `kontakt` wie die Stadtbücher,
 `einreichung` (Mailadresse, siehe 5.2), `sammelbuch: true`, `format: v1`. Im Text, datiert:
 
-- Der Festpreis-Satz aus §1 Befund 6, wörtlich.
+- Der Festpreis-Satz aus §1 Befund 6, wörtlich. Eine Abweichung ist entschieden (06.09.2026):
+  im Sammelbuch heißt es „als Halter dieses Buches" statt „des Buches".
 - Verfall-Regel des Halters: hinterlegte Einträge verfallen sechs Monate nach dem
   Prüfdatum; `verfall_am` steht in jeder Datei.
 - „Der Halter dieses Buches hinterlegt nicht im eigenen Buch."

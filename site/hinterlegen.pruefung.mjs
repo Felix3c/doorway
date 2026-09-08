@@ -1,4 +1,4 @@
-import { idBilden, kurzBilden } from "./hinterlegen.mjs";
+import { idBilden, kurzBilden, uebersetzen, datumPlus } from "./hinterlegen.mjs";
 
 const faelle = [];
 export function fall(name, fn) { faelle.push([name, fn]); }
@@ -18,6 +18,57 @@ fall("id: aus Ordner, wenn Buch bekannt", () => {
 fall("id: aus Institution, wenn frei", () => {
   gleich(idBilden("Bürgerverein Nord", null, JETZT), "buergerverein-nord-2026-09051432", "frei");
   gleich(/^[a-z0-9][a-z0-9-]*$/.test(idBilden("Ärzte ohne Grenzen!", null, JETZT)), true, "muster");
+});
+
+export const BUECHER = { stand: "2026-09-05", buecher: [
+  { ordner: "koeln", titel: "Köln gegen Köln", institution: "Stadt Köln", halter: "Felix Lind", kontakt: "https://belegbar.eu", einreichung: null, repo: "Felix3c/festgehalten", zweig: "main", pfad: "buecher/koeln/wetten", sammelbuch: false },
+  { ordner: "hinterlegt", titel: "Hinterlegt", institution: null, halter: "Felix Lind", kontakt: "https://belegbar.eu", einreichung: "buch@example.org", repo: "Felix3c/festgehalten", zweig: "main", pfad: "buecher/hinterlegt/wetten", sammelbuch: true },
+]};
+export const EINGABE_OK = {
+  institution: "Bürgerverein Nord", gesagtVon: "Vorstand", zitat: "Bis Ende Juni 2027 liegt ein spielbarer Build öffentlich vor.",
+  stichtag: "2027-06-30", typ: "ja_nein", einheit: "", wert: "", toleranz: "",
+  nachweisUrl: "https://example.org/build", bedingung: "Bewilligung des Förderantrags", bedingungFrist: "2027-03-31", quelleUrl: "",
+};
+
+fall("datumPlus über Jahresgrenze", () => {
+  gleich(datumPlus("2027-12-31", { tage: 1 }), "2028-01-01", "tag");
+  gleich(datumPlus("2027-08-31", { monate: 6 }), "2028-02-29", "monat, Monatsende geklemmt");
+});
+fall("uebersetzen: gültige Eingabe, Sammelbuch", () => {
+  const r = uebersetzen(EINGABE_OK, BUECHER, JETZT);
+  gleich(Object.keys(r.fehler).length, 0, "keine Fehler " + JSON.stringify(r.fehler));
+  gleich(r.zielbuch.ordner, "hinterlegt", "zielbuch");
+  gleich(r.id, "buergerverein-nord-2026-09051432", "id");
+  for (const z of ["id: buergerverein-nord-2026-09051432", "institution: \"Bürgerverein Nord\"", "gesagt_am: 2026-09-05",
+    "quelle: https://github.com/Felix3c/festgehalten/blob/main/buecher/hinterlegt/wetten/buergerverein-nord-2026-09051432.md",
+    "typ: ja_nein", "pruefung_am: 2027-07-01", "verfall_am: 2028-01-01", "herkunft: hinterlegt",
+    "    wert: 1.00", "    art: angekuendigt", "ausgang: null", "## Nachweis", "## Bedingung", "Bewilligung des Förderantrags", "31.03.2027"]) {
+    gleich(r.datei.includes(z), true, "enthält " + z);
+  }
+});
+fall("uebersetzen: Zielbuch aus Liste, eigene Quelle", () => {
+  const r = uebersetzen({ ...EINGABE_OK, institution: "Stadt Köln", quelleUrl: "https://stadt-koeln.example/erwartung" }, BUECHER, JETZT);
+  gleich(r.zielbuch.ordner, "koeln", "koeln");
+  gleich(r.id, "koeln-2026-09051432", "id aus ordner");
+  gleich(r.datei.includes("quelle: https://stadt-koeln.example/erwartung"), true, "eigene quelle");
+});
+fall("uebersetzen: Fehler je Regel", () => {
+  const f = (aenderung) => uebersetzen({ ...EINGABE_OK, ...aenderung }, BUECHER, JETZT).fehler;
+  gleich("institution" in f({ institution: " " }), true, "institution leer");
+  gleich("zitat" in f({ zitat: "x".repeat(601) }), true, "zitat zu lang");
+  gleich("stichtag" in f({ stichtag: "2026-09-05" }), true, "stichtag nicht in Zukunft");
+  gleich("stichtag" in f({ stichtag: "31.12.2027" }), true, "stichtag falsches Format");
+  gleich("nachweisUrl" in f({ nachweisUrl: "ftp://x" }), true, "nachweis keine http-URL");
+  gleich("quelleUrl" in f({ quelleUrl: "kein-link" }), true, "quelle keine URL");
+  gleich("bedingungFrist" in f({ bedingungFrist: "" }), true, "bedingung ohne frist");
+  gleich("einheit" in f({ typ: "punkt", wert: "3", einheit: "" }), true, "punkt ohne einheit");
+  gleich("wert" in f({ typ: "punkt", wert: "abc", einheit: "Mio EUR" }), true, "punkt wert keine zahl");
+  gleich("toleranz" in f({ typ: "punkt", wert: "3", einheit: "Mio EUR", toleranz: "x" }), true, "toleranz keine zahl");
+});
+fall("uebersetzen: punkt schreibt einheit, wert, toleranz", () => {
+  const r = uebersetzen({ ...EINGABE_OK, typ: "punkt", wert: "2000", einheit: "Plätze", toleranz: "0.10" }, BUECHER, JETZT);
+  gleich(Object.keys(r.fehler).length, 0, "ok");
+  for (const z of ["typ: punkt", "einheit: \"Plätze\"", "toleranz: 0.10", "    wert: 2000"]) gleich(r.datei.includes(z), true, z);
 });
 
 export function pruefen() {

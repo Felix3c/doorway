@@ -6,7 +6,7 @@ const UMLAUTE = { ä: "ae", ö: "oe", ü: "ue", ß: "ss" };
 export function kurzBilden(text) {
   const k = String(text).toLowerCase()
     .replace(/[äöüß]/g, (c) => UMLAUTE[c])
-    .normalize("NFD").replace(/[̀-ͯ]/g, "")
+    .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
     .replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
   return k.slice(0, 20).replace(/-+$/g, "");
 }

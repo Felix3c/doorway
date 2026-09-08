@@ -10,7 +10,7 @@
 
 **Spec:** `docs/superpowers/specs/2026-09-05-doorway-teil-3-hinterlegung-design.md`, Abschnitte 2, 3, 4, 6, 7.
 
-**Voraussetzung:** Der festgehalten-Plan `~/wettbuch/docs/superpowers/plans/2026-09-05-hinterlegt-sammelbuch-und-buchliste.md` ist ausgeführt und gepusht. Sein letzter Commit ist `FESTGEHALTEN_SHA` (hier eintragen: `________`).
+**Voraussetzung:** Der festgehalten-Plan `~/wettbuch/docs/superpowers/plans/2026-09-05-hinterlegt-sammelbuch-und-buchliste.md` ist ausgeführt und gepusht. Sein letzter Commit ist `FESTGEHALTEN_SHA` = `f848d8089500edaf82bb82f290ef9d7061a62ddd` (Merge von PR #1, 08.09.2026).
 
 ## Global Constraints
 

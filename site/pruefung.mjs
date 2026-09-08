@@ -1,6 +1,7 @@
 // node site/pruefung.mjs — prueft, dass Regeln und Seite zusammenpassen.
 import { readFileSync } from "node:fs";
 import { kompilieren, selbstpruefung, pruefen } from "./regeln.mjs";
+import { pruefen as hinterlegenPruefen } from "./hinterlegen.pruefung.mjs";
 
 const daten = JSON.parse(readFileSync(new URL("./daten/panel.json", import.meta.url), "utf-8"));
 const regeln = kompilieren(daten.regeln);
@@ -20,6 +21,8 @@ for (const klasse of ["bis_2000", "bis_5000", "bis_50000", "mehr"]) {
     if (!daten.schaetzungen[daten.vorschlag[klasse][typ]]) { console.error("Vorschlag ohne Schaetzung:", klasse, typ); fehler++; }
   }
 }
+
+fehler += hinterlegenPruefen();
 
 console.log(fehler === 0 ? `ok: ${Object.values(daten.beispiele).flat().length} Beispiele, ${regeln.length} Regeln` : `${fehler} Fehler`);
 process.exit(fehler === 0 ? 0 : 1);

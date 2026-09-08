@@ -1,0 +1,77 @@
+{
+  "stand": "2026-09-08",
+  "buecher": [
+    {
+      "ordner": "bonn",
+      "titel": "Bonn gegen Bonn",
+      "institution": "Stadt Bonn",
+      "halter": "Felix Lind",
+      "kontakt": "https://belegbar.eu",
+      "einreichung": null,
+      "repo": "Felix3c/festgehalten",
+      "zweig": "master",
+      "pfad": "buecher/bonn/wetten",
+      "sammelbuch": false
+    },
+    {
+      "ordner": "dortmund",
+      "titel": "Dortmund gegen Dortmund",
+      "institution": "Stadt Dortmund",
+      "halter": "Felix Lind",
+      "kontakt": "https://belegbar.eu",
+      "einreichung": null,
+      "repo": "Felix3c/festgehalten",
+      "zweig": "master",
+      "pfad": "buecher/dortmund/wetten",
+      "sammelbuch": false
+    },
+    {
+      "ordner": "duesseldorf",
+      "titel": "Düsseldorf gegen Düsseldorf",
+      "institution": "Stadt Düsseldorf",
+      "halter": "Felix Lind",
+      "kontakt": "https://belegbar.eu",
+      "einreichung": null,
+      "repo": "Felix3c/festgehalten",
+      "zweig": "master",
+      "pfad": "buecher/duesseldorf/wetten",
+      "sammelbuch": false
+    },
+    {
+      "ordner": "essen",
+      "titel": "Essen gegen Essen",
+      "institution": "Stadt Essen",
+      "halter": "Felix Lind",
+      "kontakt": "https://belegbar.eu",
+      "einreichung": null,
+      "repo": "Felix3c/festgehalten",
+      "zweig": "master",
+      "pfad": "buecher/essen/wetten",
+      "sammelbuch": false
+    },
+    {
+      "ordner": "hinterlegt",
+      "titel": "Hinterlegt",
+      "institution": null,
+      "halter": "Felix Lind",
+      "kontakt": "https://belegbar.eu",
+      "einreichung": "hinterlegt@belegbar.eu",
+      "repo": "Felix3c/festgehalten",
+      "zweig": "master",
+      "pfad": "buecher/hinterlegt/wetten",
+      "sammelbuch": true
+    },
+    {
+      "ordner": "koeln",
+      "titel": "Köln gegen Köln",
+      "institution": "Stadt Köln",
+      "halter": "Felix Lind",
+      "kontakt": "https://belegbar.eu",
+      "einreichung": null,
+      "repo": "Felix3c/festgehalten",
+      "zweig": "master",
+      "pfad": "buecher/koeln/wetten",
+      "sammelbuch": false
+    }
+  ]
+}

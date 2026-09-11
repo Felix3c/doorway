@@ -19,7 +19,7 @@ export function idBilden(institution, ordner, jetzt) {
   return `${kurz}-${jetzt.getFullYear()}-${zwei(jetzt.getMonth() + 1)}${zwei(jetzt.getDate())}${zwei(jetzt.getHours())}${zwei(jetzt.getMinutes())}`;
 }
 
-export const GRENZEN = { institution: 120, gesagtVon: 120, zitat: 600, bedingung: 300 };
+export const GRENZEN = { institution: 120, gesagtVon: 120, zitat: 400, bedingung: 200 };
 const ISO = /^\d{4}-\d{2}-\d{2}$/;
 const istUrl = (s) => /^https?:\/\/\S+$/.test(s);
 const istZahl = (s) => s !== "" && Number.isFinite(Number(s));
@@ -105,7 +105,7 @@ export function uebersetzen(e, buecher, jetzt) {
   return { datei: kopf + "\n" + text, id, zielbuch, fehler: {} };
 }
 
-export const PR_URL_MAX = 8000; // ungemessen; Messung gegen GitHub in Plan-Task 6, dann Datum hier eintragen
+export const PR_URL_MAX = 6400; // gemessen am 11.09.2026 gegen github.com (curl, nicht eingeloggt): bis 6905 Zeichen HTTP 302, ab 7043 HTTP 500; Grenze = 6900 − 500 Sicherheitsrand
 export const FESTGEHALTEN_SEITE = "https://felix3c.github.io/festgehalten";
 
 export const prUrl = (b, id, datei) =>

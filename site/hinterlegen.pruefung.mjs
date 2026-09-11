@@ -55,7 +55,8 @@ fall("uebersetzen: Zielbuch aus Liste, eigene Quelle", () => {
 fall("uebersetzen: Fehler je Regel", () => {
   const f = (aenderung) => uebersetzen({ ...EINGABE_OK, ...aenderung }, BUECHER, JETZT).fehler;
   gleich("institution" in f({ institution: " " }), true, "institution leer");
-  gleich("zitat" in f({ zitat: "x".repeat(601) }), true, "zitat zu lang");
+  gleich("zitat" in f({ zitat: "x".repeat(401) }), true, "zitat zu lang");
+  gleich("bedingung" in f({ bedingung: "x".repeat(201) }), true, "bedingung zu lang");
   gleich("stichtag" in f({ stichtag: "2026-09-05" }), true, "stichtag nicht in Zukunft");
   gleich("stichtag" in f({ stichtag: "31.12.2027" }), true, "stichtag falsches Format");
   gleich("nachweisUrl" in f({ nachweisUrl: "ftp://x" }), true, "nachweis keine http-URL");

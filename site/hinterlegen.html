@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Doorway — selbst hinterlegen</title>
+<link rel="stylesheet" href="stil.css">
+</head>
+<body>
+<header>
+  <h1>Doorway</h1>
+  <p class="claim">Halte vorab fest, was du erwartest. Datiert, öffentlich, nachprüfbar.</p>
+  <p class="stand"><a href="index.html">Zurück zum Spiegel</a></p>
+</header>
+<main>
+  <section id="formular" aria-labelledby="formular-titel">
+    <h2 id="formular-titel">Was erwartest du?</h2>
+    <p class="hinweis" id="datenschutz">Nichts, was du hier eingibst, verlässt deinen Browser. Ein Entwurf bleibt nur auf diesem Gerät gespeichert; auf einem geteilten Rechner können andere ihn sehen.</p>
+    <p class="hinweis" id="entwurf-hinweis" hidden></p>
+    <form id="f" novalidate>
+      <fieldset><legend>1. Wer erwartet das?</legend>
+        <label>Institution, Verein oder Person <input id="f-institution" list="buecher-liste" maxlength="120" autocomplete="organization"></label>
+        <datalist id="buecher-liste"></datalist>
+        <label>Wer spricht dafür (Person oder Organ) <input id="f-gesagtVon" maxlength="120"></label>
+        <p class="hinweis" id="zielbuch-text"></p>
+      </fieldset>
+      <fieldset><legend>2. Was wird erwartet?</legend>
+        <label>In eigenen Worten, ein bis drei Sätze <textarea id="f-zitat" maxlength="600" rows="3"></textarea></label>
+      </fieldset>
+      <fieldset><legend>3. Bis wann?</legend>
+        <label>Stichtag <input id="f-stichtag" type="date"></label>
+        <p class="hinweis">Der Stichtag gilt wörtlich. Teilerfüllung ist Nein. Geprüft wird ab dem Tag danach; ohne Beleg verfällt der Eintrag sechs Monate später.</p>
+      </fieldset>
+      <fieldset><legend>4. Woran erkennt man es?</legend>
+        <div class="optionen" id="f-typ"></div>
+        <div id="punkt-felder" hidden>
+          <label>Zahl <input id="f-wert" inputmode="decimal"></label>
+          <label>Einheit <input id="f-einheit" placeholder="z. B. Plätze, Mio EUR"></label>
+          <label>Toleranz (freiwillig, z. B. 0.10 für ±10 %) <input id="f-toleranz" inputmode="decimal"></label>
+        </div>
+      </fieldset>
+      <fieldset><legend>5. Wo wird das Ergebnis öffentlich sichtbar sein?</legend>
+        <label>Adresse <input id="f-nachweisUrl" type="url" placeholder="https://…"></label>
+        <p class="hinweis">Ohne diesen Ort gibt es keinen Beleg. Ist dort am Prüftag nichts, gilt das als Nein.</p>
+      </fieldset>
+      <fieldset><legend>6. Hängt es von etwas ab? <span class="optional">(freiwillig)</span></legend>
+        <label>Bedingung <input id="f-bedingung" maxlength="300" placeholder="z. B. Bewilligung des Förderantrags"></label>
+        <label>Steht fest bis <input id="f-bedingungFrist" type="date"></label>
+      </fieldset>
+      <fieldset><legend>7. Steht die Erwartung schon irgendwo öffentlich? <span class="optional">(freiwillig)</span></legend>
+        <label>Adresse <input id="f-quelleUrl" type="url" placeholder="https://…"></label>
+        <p class="hinweis">Wenn nicht, wird die Datei im Buch selbst zur Quelle.</p>
+      </fieldset>
+      <p><button type="button" id="k-entwurf-loeschen">Entwurf löschen</button></p>
+    </form>
+  </section>
+  <section id="vorschau" aria-live="polite" hidden>
+    <h2>So wird der Eintrag im Buch stehen</h2>
+    <p class="hinweis">Das hier wird nach Aufnahme nicht mehr geändert. Prüfen Sie Stichtag und Ort des Nachweises.</p>
+    <pre id="datei"></pre>
+    <p class="optionen">
+      <a id="k-pr" class="button" target="_blank" rel="noopener">Als Pull Request anlegen</a>
+      <a id="k-download" class="button">Herunterladen</a>
+      <a id="k-mail" class="button" hidden>Per Mail einreichen</a>
+    </p>
+    <p class="hinweis" id="pr-zu-lang" hidden>Der Eintrag ist zu lang für den direkten Pull-Request-Link. Bitte herunterladen und per Mail einreichen oder die Datei selbst im Buch anlegen.</p>
+    <p class="hinweis" id="danach" hidden></p>
+  </section>
+  <section id="status" aria-labelledby="status-titel">
+    <h2 id="status-titel">Ist mein Eintrag drin?</h2>
+    <label>id <input id="s-id" placeholder="z. B. koeln-2026-09051432"></label>
+    <button type="button" id="k-status">Nachsehen</button>
+    <p id="status-text" aria-live="polite"></p>
+  </section>
+</main>
+<footer>
+  <h2>Was diese Seite nicht tut</h2>
+  <p>Sie öffnet keinen Pull Request in deinem Namen, speichert nichts auf einem Server und führt kein Buch. Der Eintrag wird erst mit dem Merge im Buch wirksam; dieser Zeitpunkt zählt.</p>
+  <p class="stand" id="buecher-stand"></p>
+  <p class="stand">Code und jede Änderung: <a href="https://github.com/Felix3c/doorway">github.com/Felix3c/doorway</a></p>
+</footer>
+<script type="module" src="hinterlegen-seite.js"></script>
+</body>
+</html>

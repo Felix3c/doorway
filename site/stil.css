@@ -103,7 +103,7 @@ fieldset { border: 0; padding: 0; margin: var(--sp-6) 0 0; }
 legend { font-weight: 600; font-size: 1.02rem; padding: 0; margin-bottom: var(--sp-2); }
 .optional { font-weight: 400; color: var(--text-3); }
 .optionen { display: flex; flex-wrap: wrap; gap: var(--sp-2); }
-.optionen button {
+.optionen button, .optionen a.button {
   font: inherit;
   font-size: 0.97rem;
   line-height: 1.35;
@@ -116,13 +116,15 @@ legend { font-weight: 600; font-size: 1.02rem; padding: 0; margin-bottom: var(--
   text-align: left;
   transition: border-color 0.12s, background 0.12s;
 }
+.optionen a.button { text-decoration: none; display: inline-block; }
+.optionen a.button[aria-disabled="true"] { opacity: 0.5; cursor: not-allowed; pointer-events: none; }
 .optionen button:hover { border-color: var(--akzent-rand); background: var(--akzent-hell); }
 .optionen button:focus-visible { outline: 2px solid var(--akzent); outline-offset: 2px; }
 .optionen button[aria-pressed="true"] { background: var(--akzent); border-color: var(--akzent); color: #fff; }
 .optionen button small { display: block; font-size: 0.82rem; color: var(--text-3); margin-top: 2px; }
 .optionen button[aria-pressed="true"] small { color: rgb(255 255 255 / 0.8); }
 #f-element button { border-radius: var(--radius); max-width: 100%; }
-input[type=text] {
+input[type=text], input[type=date], input[type=url], input:not([type]), textarea {
   width: 100%;
   font: inherit;
   color: var(--tinte);
@@ -131,7 +133,7 @@ input[type=text] {
   border: 1px solid var(--linie);
   border-radius: var(--radius);
 }
-input[type=text]:focus { outline: 2px solid var(--akzent); outline-offset: 1px; border-color: var(--akzent); }
+input[type=text]:focus, input[type=date]:focus, input[type=url]:focus, input:not([type]):focus, textarea:focus { outline: 2px solid var(--akzent); outline-offset: 1px; border-color: var(--akzent); }
 input::placeholder { color: var(--text-3); }
 
 /* Panel */

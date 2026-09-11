@@ -1,8 +1,8 @@
 # Doorway — Nächste Schritte
 
-**Stand:** 06.09.2026, nachmittags (Plan 1 umgesetzt: PR #1 in festgehalten offen, Check grün, noch nicht gemerged; Plan 2 nicht begonnen)
+**Stand:** 11.09.2026, spät abends (Plan 2 Task 3 bis 6 fertig und reviewt; Final-Review, Fix-Welle `d4cb2b9` und Re-Review sauber; Zweig `hinterlegen` gepusht, PR noch nicht angelegt)
 **Führendes Dokument:** `docs/superpowers/specs/2026-08-24-doorway-design.md` (Präambel = Leitsatz); Teil 2: `docs/superpowers/specs/2026-08-27-doorway-teil-2-design.md`; **Teil 3: `docs/superpowers/specs/2026-09-05-doorway-teil-3-hinterlegung-design.md`**
-**Phase:** Teil 1 und Teil 2 abgeschlossen und veröffentlicht. Teil 3 (Hinterlegungs-Pfad): Plan 1 (festgehalten) fertig und im PR, Plan 2 (Doorway-Seite) wartet auf den Merge.
+**Phase:** Teil 1 und Teil 2 veröffentlicht. Teil 3: Plan 1 (festgehalten) gemerged. Plan 2 (Doorway-Seite `hinterlegen.html`) auf dem Zweig `hinterlegen` fertig gebaut, Final-Fix-Welle offen, dann Push und Abnahme (Task 7).
 
 ---
 
@@ -23,55 +23,96 @@ Commit ab2ad9a bzw. FORMAT.md §8.4.
 ## Wo wir stehen
 
 - **Live:** https://felix3c.github.io/doorway/ — Spiegel, Panel, Nein-Register, Quellen.
-  Von Felix abgenommen 01.09. An der Seite wurde heute nichts geändert.
-- **Plan 1 ist umgesetzt** (`~/wettbuch`, Branch `hinterlegt-sammelbuch`,
-  PR https://github.com/Felix3c/festgehalten/pull/1, 8 Commits, Check `pruefen` grün,
-  mergebar). Inhalt: Generator baut leere Bücher (nur Test, kein Fix nötig); BUCH.md kennt
-  `institution`, `einreichung`, `sammelbuch`; `alle` schreibt `buecher.json` (zehn Felder)
-  mit `--repo`; Sammelbuch `buecher/hinterlegt/` mit `einreichung: hinterlegt@belegbar.eu`;
-  `institution: Stadt …` in den fünf Stadtbüchern; `pruefen.yml` bei jedem PR, nur Leserecht.
-  80 Tests grün (vorher 69), lokaler Build: 6 Bücher, genau `hinterlegt` als Sammelbuch.
-- **Im PR liegt auch ein fremder Commit** (2bd75f4, `recherche/nachweis-modell/`, aus einem
-  anderen Tab, 06.09. 15:39). Gehört nicht zu Plan 1, stört den Merge nicht.
-- **Entscheidungen heute (Felix):** Einreichungsadresse `hinterlegt@belegbar.eu`;
-  Festpreis-Satz bleibt „Halter dieses Buches" (in Spec §5.1 vermerkt, Commit d5d4e21).
-- **Entscheidungen heute (Session, im Ledger belegt):** `pruefen.yml` läuft ohne `--pruefen`
-  (Spec-Wortlaut); `_zweig()` liest Git im Bücher-Ordner, Rückfall `origin/HEAD`, „main" nur
-  zuletzt; `pages.yml` bekommt `--repo` (Plan-Selbstprüfung, abweichend von Spec §5.3).
-  Geparkt: im PR-Workflow fällt `zweig` auf „main", weil der Checkout losgelöst ist; das
-  PR-`site/` wird nie ausgeliefert. Nachweis nach dem Deploy: `buecher.json` zeigt
-  `"zweig": "master"`.
-- **Ledger mit allen Rulings und sechs vertagten Kleinigkeiten:**
-  `~/wettbuch/.superpowers/sdd/2026-09-05-hinterlegt-sammelbuch-und-buchliste/progress.md`
-  (gitignored; bleibt bis zum Merge liegen).
-- **Für Plan 2 vorgemerkt:** Das Sammelbuch hat `institution: null`; das Formular muss es über
-  `sammelbuch: true` als Ziel wählen, nicht über `institution`. `buecher.json` nach `ordner`
-  keyen, nicht nach Index.
-- Probe-Dateien `research/hinterlegung-probe/` bleiben privat und gitignored.
+  An der veröffentlichten Seite wurde seit der Abnahme am 01.09. nichts geändert.
+- **Plan 1 (festgehalten) gemerged** (PR #1, `f848d80`, 08.09.). Buchliste live mit sechs
+  Einträgen, Sammelbuch `hinterlegt` mit `einreichung: hinterlegt@belegbar.eu`.
+- **Plan 2 auf dem Zweig `hinterlegen`** in `~/doorway`, **nicht gepusht, kein Upstream.**
+  Commits über `master` hinaus (in dieser Reihenfolge): `65c050e`, `8922b6f`, `f23a449`,
+  `013e648`, `f80e9a7` (docs), `35ed74e` (Task 3), `82fb3fd` (Task 4), `126e28c` + `b618c42`
+  (Task 5 + Fix-Runde), `f8d65bd` (Task 6). Jeder Task hat ein sauberes Review im Ledger.
+  - Task 3: `prUrl`, `urlZuLang`, `mailUrl`, `statusUrl`, `prListeUrl`, `FESTGEHALTEN_SEITE`.
+  - Task 4: `tests/test_hinterlegen_rundlauf.py` — die erzeugte Datei besteht `lesen` und
+    `pruefen` des echten Generators. **`pip install -e ".[dev]"` wurde bewusst nicht
+    ausgeführt** (Ruling D): `festgehalten` ist als Editable-Install aus `~/wettbuch`
+    vorhanden, und dort arbeitete ein anderer Tab. Der Pin steht in `pyproject.toml`.
+  - Task 5: `site/hinterlegen.html`, `site/hinterlegen-seite.js`, Link in `index.html`,
+    CSS nur `.optionen a.button` und erweiterter Feld-Selektor (+ `:focus`). Durchklick
+    lokal mit chrome-devtools bestanden: Fehler am Feld, Vorschau, Entwurf, PR-/Download-/
+    Mail-Link, Status mit echter Köln-id („aufgenommen", Link `…/koeln/wette/<id>.html`).
+  - Task 6: `PR_URL_MAX = 6400`, `GRENZEN.zitat = 400`, `bedingung = 200`, `maxlength`
+    angeglichen. Messung per curl gegen github.com **ohne Login**: bis 6905 Zeichen
+    HTTP 302 (Login-Umleitung), ab 7043 HTTP 500, ab 12011 HTTP 414. Ob GitHub im
+    eingeloggten Zustand bei ~6400 Zeichen den Inhalt wirklich vorbefüllt, ist
+    **ungeklärt** — das prüft Felix im Probelauf.
+- **Final-Review (opus) über `65c050e..f8d65bd`: „Ready with fixes".** Ein Critical:
+  `yamlText` escaped keine Zeilenumbrüche — Enter im Zitat wird vom YAML zu einem Leerzeichen
+  gefaltet, eine `---`-Zeile macht die Datei unlesbar. Dazu sechs Importants (unquoted
+  `quelle`, fünf Fehlerkästen beim leeren Erstaufruf, Text bei fehlender Buchliste
+  verspricht zu viel, `aria-live` auf der ganzen Vorschau, Rundlauf nur für `ja_nein`,
+  leerer Entwurf wird gespeichert und als „wiederhergestellt" gemeldet).
+- **Fix-Welle dazu war beim Umsetzer, als die Sitzung endete.** Erwarteter Commit:
+  `fix: YAML-Escapes für Zeilenumbrüche, ehrliche Hinweise, Rundlauf für punkt (Final-Review)`
+  mit Bericht `.superpowers/sdd/2026-09-05-doorway-teil-3-hinterlegung/final-fix-report.md`.
+  Beim Sitzungsende waren `site/hinterlegen.mjs` und `site/hinterlegen.pruefung.mjs`
+  geändert, aber nicht committet. Ob der Commit noch gelandet ist: `git log --oneline
+  f8d65bd..HEAD` — leer heißt, die Fix-Welle ist unvollständig und wird mit dem Bericht
+  (falls vorhanden) und dem Ledger neu aufgesetzt.
+- **Gemessen heute (vor der Fix-Welle):** `node site/hinterlegen.pruefung.mjs` „ok: 12
+  Fälle", `node site/pruefung.mjs` grün, `python -m pytest -q` 129 grün (mit dem
+  vorhandenen `wettbuch`-Install; ohne dev-Extra würde der Rundlauf still übersprungen).
+- **Ledger** mit allen Rulings A–P, Findings und vertagten Kleinigkeiten:
+  `.superpowers/sdd/2026-09-05-doorway-teil-3-hinterlegung/progress.md` (gitignored).
+  Wichtigste neue Rulings: D (kein pip install), E/H (CSS-Umfang), G (Grenzen aus der
+  Messung), M (ehrlicher Text statt hart kodiertem Fallback-Buch), N (`istZahl` nur mit
+  Punkt), O (Umfang der Fix-Welle: #1–#7, #12, #14; offen bleiben #8, #9, #13, #15, #16),
+  P (Plan Task 6 Step 2 wörtlich nicht erfüllbar, 400/200 bleibt; `#danach` vor dem Klick).
+- **Lokaler `master`** hat einen ungepushten Docs-Commit `75ec62e`; der Zweig enthält ihn.
+- Chrome-Erweiterung war heute nicht verbunden; Browserarbeit lief über chrome-devtools
+  (eigenes Chrome ohne GitHub-Login). `gh` fehlt weiterhin.
+
+## Nachtrag später am Abend
+
+- **Fix-Welle gelandet:** `d4cb2b9` fixt #1–#7, #12, #14 (yamlText escaped `\n`/`\r`/`\t`,
+  `quelle` quoted, `istZahl` nur Punkt, `--beispiel punkt`, Rundlauf parametrisiert, berührte
+  Felder, kein leerer Entwurf, ehrlicher Buchlisten-Hinweis, `aria-live` auf Statuszeile).
+  Gemessen danach: „ok: 13 Fälle", `pruefung.mjs` grün, `python -m pytest -q` 130 grün.
+- **Scoped Re-Review sauber**, alle zehn Findings adressiert. Neuer deferred minor: ein Entwurf
+  mit nur gewähltem Typ „Zahl" und sonst leeren Feldern wird nicht gespeichert.
+- **Zweig gepusht:** `origin/hinterlegen` = `d4cb2b9`, Upstream gesetzt. Kein PR angelegt
+  (kein `gh`, kein GitHub-Login in der Session).
 
 ## Nächster konkreter Schritt
 
-**PR #1 in festgehalten mergen** (Felix, oder Freigabe an die Session), dann prüfen:
-https://felix3c.github.io/festgehalten/buecher.json hat 6 Einträge und `"zweig": "master"`.
-Danach in dieser Reihenfolge: Probelauf-PR mit kaputter Datei (Plan 1, Task 5 Schritt 3),
-Merge-SHA als `FESTGEHALTEN_SHA` in `docs/superpowers/plans/2026-09-05-doorway-teil-3-hinterlegung.md`
-eintragen, Plan 2 mit superpowers:subagent-driven-development starten.
+**PR anlegen und Probelauf (Task 7).** Felix öffnet
+https://github.com/Felix3c/doorway/compare/master...hinterlegen und legt den PR gegen
+`master` an (Titel „Teil 3: Hinterlegungs-Pfad — hinterlegen.html"). Nach dem Merge baut Pages
+`master`; dann Probelauf laut „Wartet auf Felix". Die Session danach: Ledger-Workspace erst
+nach dem Merge löschen (Ruling Q), `~/REIHENFOLGE.txt` angleichen.
 
 ## Wartet auf Felix
 
-- **Merge von PR #1** oder das Wort, dass die Session mergen darf.
-- **Alias `hinterlegt@belegbar.eu` bei ImprovMX anlegen.** Die Adresse steht schon im
-  Sammelbuch; ohne Alias laufen Mails ins Leere.
-- **Abnahme am Ende von Plan 2:** erfundener Fall durchklicken bis zum Probelauf-PR im
-  Sammelbuch, PR schließen.
+- **Probelauf (Plan 2, Task 7):** nach dem Push auf dem Zweig oder nach dem Merge live:
+  erfundener Fall „Probelauf e.V." auf `hinterlegen.html` bis zum PR im Sammelbuch;
+  dabei prüfen, ob GitHub die Datei bei ~5000–6400 Zeichen URL wirklich vorbefüllt.
+  PR-Titel mit „Probelauf" beginnen, Check grün erwartet, PR schließen.
+- **Alias `hinterlegt@belegbar.eu` bei ImprovMX anlegen** — steht im Sammelbuch, ohne Alias
+  laufen Mails ins Leere.
+- **Merge des Doorway-PRs nach `master`** nach Probelauf; Pages baut nur `master`.
+- Später: `pip install -e ".[dev]"` in `~/doorway`, sobald `~/wettbuch` frei ist (ersetzt
+  den Editable-Install durch den gepinnten Stand `f848d80`).
 
 ## Blocker
 
-Keine.
+Keine. (Speicher war heute knapp: Hintergrundprozesse wurden vom System beendet.
+Keine Dauerprozesse starten, Browserseiten schließen.)
 
 ## Wie eine neue Session hier einsteigt
 
-1. Teil-3-Spec lesen, dann Stand oben; Ledger in `~/wettbuch/.superpowers/sdd/…/progress.md`.
-2. `~/wettbuch`: `python -m pytest -q` (80 grün); `~/doorway`: `python -m pytest -q` (128 grün,
-   zuletzt 27.08.) und `node site/pruefung.mjs`.
-3. Nichts an der Seite ändern, was nicht in der Spec steht; Abweichungen in die Spec schreiben.
+1. Diesen Stand lesen, dann den Ledger (Verlauf ab „11.09.").
+2. `git branch --show-current` muss `hinterlegen` sagen; sonst `git checkout hinterlegen`.
+3. `git log --oneline f8d65bd..HEAD` und `git status` — entscheidet, ob die Fix-Welle
+   committet ist.
+4. `node site/pruefung.mjs` und `python -m pytest -q` als Ausgangslage.
+5. Nichts an der Seite ändern, was nicht in der Spec steht; Abweichungen ins Ledger.
+6. `~/wettbuch` nicht anfassen, wenn dort ein anderer Tab arbeitet (heute: Zweig
+   `weitsicht`, ungesicherte Dateien).

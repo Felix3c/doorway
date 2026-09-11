@@ -1,6 +1,6 @@
 # Doorway — Nächste Schritte
 
-**Stand:** 11.09.2026, spät abends (Teil 3 fertig, gemerged, live und durch einen Probelauf abgenommen)
+**Stand:** 11.09.2026, Nacht (Teil 3 live und abgenommen; Aufräumen bis auf drei gesperrte Befehle erledigt)
 **Führendes Dokument:** `docs/superpowers/specs/2026-08-24-doorway-design.md` (Präambel = Leitsatz); Teil 2: `docs/superpowers/specs/2026-08-27-doorway-teil-2-design.md`; Teil 3: `docs/superpowers/specs/2026-09-05-doorway-teil-3-hinterlegung-design.md`
 **Phase:** Teil 1, 2 und 3 veröffentlicht. Kein Plan läuft. Doorway wartet auf den ersten echten hinterlegten Eintrag.
 
@@ -25,7 +25,7 @@ Commit ab2ad9a bzw. FORMAT.md §8.4.
 **Live:** https://felix3c.github.io/doorway/ — Spiegel, Panel, Nein-Register, Quellen (Teil 1 + 2,
 abgenommen 01.09.) und seit heute https://felix3c.github.io/doorway/hinterlegen.html (Teil 3).
 
-**Git:** Zweig `master`, sauber, nichts ungepusht. `origin/master` = `3e2d309`.
+**Git:** Zweig `master`, sauber, nichts ungepusht (Stand: `git log -1`).
 Merge-Commit von Teil 3: `80863ee` (PR #1, 14 Commits, 13 Dateien).
 
 **Teil 3 ist fertig.** Der Hinterlegungs-Pfad nimmt sieben Antworten, erzeugt daraus eine Datei
@@ -69,24 +69,27 @@ vielen Umlauten füllen (URL dann etwa 5800) und Knopf 1 drücken.
 **Review-Spuren.** Jeder Task hat ein eigenes Review, dazu ein Final-Review über den ganzen
 Zweig (fand einen echten Fehler: `yamlText` escapte keine Zeilenumbrüche, ein Enter im Zitat
 hätte YAML gefaltet, eine `---`-Zeile die Datei unlesbar gemacht), eine Fix-Welle `d4cb2b9` und
-ein sauberes Re-Review. Alles mit Rulings A–Q im Ledger
-`.superpowers/sdd/2026-09-05-doorway-teil-3-hinterlegung/progress.md` (gitignored).
+ein sauberes Re-Review. Die Rulings A–Q sind seit heute Nacht als **§10 der Teil-3-Spec**
+gesichert. Der Ledger `.superpowers/sdd/2026-09-05-doorway-teil-3-hinterlegung/` (gitignored)
+liegt noch auf der Platte, weil die Session ihn nicht löschen durfte.
 
-**Vertagte Kleinigkeiten aus dem Final-Review**, bewusst nicht gefixt, stehen nur im Ledger:
-`fehlerZeigen` trifft beim Typ-Feld einen Nachbarknoten (heute unerreichbar); Fehlertext als
-`<p>` im `<label>` statt `aria-describedby`; `importorskip` kann den Rundlauf still überspringen
-(kein pytest-CI im Repo); Test-Fixture nutzt `zweig: main`, live ist `master`; „Prüfen Sie" nach
-Spec-Wortlaut inmitten von Du-Ansprache; ein Entwurf mit nur gewähltem Typ „Zahl" wird nicht
-gespeichert.
+**Vertagte Kleinigkeiten** aus allen Reviews, bewusst nicht gefixt, stehen jetzt in
+`docs/vertagt.md` (zehn Punkte, dazu die ungemessene Vorbefüllung nahe 6400 Zeichen).
 
 ## Nächster konkreter Schritt
 
-**Aufräumen.** Die zwei erledigten Zweige auf GitHub löschen: `hinterlegen` in
-`Felix3c/doorway` (gemerged) und `probelauf-doorway-teil-3` in `Felix3c/festgehalten`
-(PR geschlossen). Danach die vertagten Kleinigkeiten oben aus dem Ledger in ein Issue
-übernehmen, wenn sie erhalten bleiben sollen, und erst dann
-`.superpowers/sdd/2026-09-05-doorway-teil-3-hinterlegung/` löschen (Ruling Q: der Workspace
-durfte bis zum Merge stehen bleiben, der Merge ist jetzt durch).
+**Drei Löschbefehle, die nur Felix ausführen kann.** Der Auto-Modus sperrt sie für die
+Session (Zweige löschen, Ordner löschen). In Tab 8 mit `!` davor, jeder einzeln:
+
+```
+git -C ~/doorway branch -d hinterlegen && git -C ~/doorway push origin --delete hinterlegen
+git -C ~/doorway push https://github.com/Felix3c/festgehalten.git --delete probelauf-doorway-teil-3
+rm -rf ~/doorway/.superpowers/sdd/2026-09-05-doorway-teil-3-hinterlegung
+```
+
+Geprüft: `hinterlegen` ist vollständig in `master` (Merge `80863ee`); PR #3 in festgehalten
+ist geschlossen; der Ledger-Inhalt steht in Spec §10 und `docs/vertagt.md`. Der zweite Befehl
+fasst `~/wettbuch` nicht an. Danach ist Doorway ohne offene Aufgabe.
 
 ## Wartet auf Felix
 
@@ -103,7 +106,7 @@ Keine.
 
 ## Wie eine neue Session hier einsteigt
 
-1. Diesen Stand lesen. Das Ledger nur, wenn die vertagten Kleinigkeiten gebraucht werden.
+1. Diesen Stand lesen. Offene Kleinigkeiten in `docs/vertagt.md`, Entscheidungen in Spec §10.
 2. `git branch --show-current` muss `master` sagen, Arbeitsbaum sauber.
 3. `node site/pruefung.mjs` und `python -m pytest -q` als Ausgangslage.
 4. Nichts an der Seite ändern, was nicht in der Spec steht; Abweichungen in die Spec schreiben.

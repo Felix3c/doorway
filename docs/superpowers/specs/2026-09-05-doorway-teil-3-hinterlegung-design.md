@@ -269,3 +269,33 @@ Buch außerhalb des Repos festgehalten. Preise über null. Felix' eigener Eintra
 Speicherung außerhalb des Browsers des Hinterlegenden. Prognosen anderer als der
 Institution im hinterlegten Eintrag; Computer und Halter kommen wie bei zitierten
 Einträgen später durch den Halter dazu.
+
+## 10. Entscheidungen aus der Umsetzung (11.09.2026)
+
+Abweichungen und Festlegungen, die beim Bauen fielen (Rulings A–Q im Umsetzungs-Ledger,
+das nach dem Merge gelöscht wurde). Sie gelten vor dem Wortlaut oben.
+
+- **Freitext-Grenzen.** `zitat` höchstens 400 Zeichen, `bedingung` höchstens 200,
+  `PR_URL_MAX` 6400. Gemessen 11.09.2026 per curl gegen github.com, nicht eingeloggt:
+  bis 6905 Zeichen HTTP 302, ab 7043 HTTP 500, ab 12011 HTTP 414. Grenze = 6905 − 500,
+  abgerundet. Ein Eintrag mit sehr vielen Umlauten kann trotzdem darüber liegen und läuft
+  dann über Download oder Mail (§4 „Zu lange Datei"). Ob GitHub nahe 6400 noch vollständig
+  vorbefüllt, ist ungemessen (Probelauf: 2213 Zeichen).
+- **„Was jetzt passiert" steht vor dem Klick**, nicht danach (§4 vorletzter Absatz):
+  wer Knopf 1 drückt, verlässt die Seite und sähe den Text nie.
+- **Zahlen nur mit Punkt** (`0.10`), kein Komma. Ein Komma landete im YAML als Text;
+  der Fehlertext zeigt das Beispiel mit Punkt.
+- **Ohne Buchliste kein Eintrag.** Lässt sich `buecher.json` nicht laden, bleibt das
+  Formular benutzbar und der Entwurf erhalten, aber es gibt keinen hart kodierten Ersatz
+  für das Sammelbuch. Text: „Die Buchliste konnte nicht geladen werden. Ohne sie lässt sich
+  kein Eintrag erzeugen, bitte die Seite neu laden. Eingaben bleiben als Entwurf erhalten."
+- **Statuslink** zeigt auf `<ordner>/wette/<id>.html`, so schreibt der Generator die Seiten.
+- **`kurz` wird auf 20 Zeichen geschnitten**, auch mitten im Wort
+  (`buergerverein-strass`); Eindeutigkeit kommt aus dem Zeitstempel.
+- **Fehler am Feld erscheinen erst nach Berührung** oder wenn das Feld nicht leer ist.
+  Ein leerer Entwurf wird nicht gespeichert und nicht als „wiederhergestellt" gemeldet.
+- **Stil.** `stil.css` ist nur so weit ergänzt, dass `a.button` wie `button` und die neuen
+  Feldtypen (date, url, textarea) wie `input[type=text]` aussehen, inklusive Fokusrahmen.
+- **`pip install -e ".[dev]"`** wurde am 11.09. bewusst nicht ausgeführt, weil in
+  `~/wettbuch` ein anderer Tab arbeitete; der Rundlauf lief gegen die vorhandene
+  Editable-Installation (enthält den gepinnten Stand `f848d80`).

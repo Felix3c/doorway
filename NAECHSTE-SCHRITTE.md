@@ -1,6 +1,6 @@
 # Doorway — Nächste Schritte
 
-**Stand:** 11.09.2026, Nacht (Teil 3 live und abgenommen; Aufräumen bis auf drei gesperrte Befehle erledigt)
+**Stand:** 11.09.2026, Nacht (Teil 3 live und abgenommen; aufgeräumt, nichts offen)
 **Führendes Dokument:** `docs/superpowers/specs/2026-08-24-doorway-design.md` (Präambel = Leitsatz); Teil 2: `docs/superpowers/specs/2026-08-27-doorway-teil-2-design.md`; Teil 3: `docs/superpowers/specs/2026-09-05-doorway-teil-3-hinterlegung-design.md`
 **Phase:** Teil 1, 2 und 3 veröffentlicht. Kein Plan läuft. Doorway wartet auf den ersten echten hinterlegten Eintrag.
 
@@ -70,26 +70,17 @@ vielen Umlauten füllen (URL dann etwa 5800) und Knopf 1 drücken.
 Zweig (fand einen echten Fehler: `yamlText` escapte keine Zeilenumbrüche, ein Enter im Zitat
 hätte YAML gefaltet, eine `---`-Zeile die Datei unlesbar gemacht), eine Fix-Welle `d4cb2b9` und
 ein sauberes Re-Review. Die Rulings A–Q sind seit heute Nacht als **§10 der Teil-3-Spec**
-gesichert. Der Ledger `.superpowers/sdd/2026-09-05-doorway-teil-3-hinterlegung/` (gitignored)
-liegt noch auf der Platte, weil die Session ihn nicht löschen durfte.
+gesichert; der Ledger-Ordner ist gelöscht.
 
 **Vertagte Kleinigkeiten** aus allen Reviews, bewusst nicht gefixt, stehen jetzt in
 `docs/vertagt.md` (zehn Punkte, dazu die ungemessene Vorbefüllung nahe 6400 Zeichen).
 
 ## Nächster konkreter Schritt
 
-**Drei Löschbefehle, die nur Felix ausführen kann.** Der Auto-Modus sperrt sie für die
-Session (Zweige löschen, Ordner löschen). In Tab 8 mit `!` davor, jeder einzeln:
-
-```
-git -C ~/doorway branch -d hinterlegen && git -C ~/doorway push origin --delete hinterlegen
-git -C ~/doorway push https://github.com/Felix3c/festgehalten.git --delete probelauf-doorway-teil-3
-rm -rf ~/doorway/.superpowers/sdd/2026-09-05-doorway-teil-3-hinterlegung
-```
-
-Geprüft: `hinterlegen` ist vollständig in `master` (Merge `80863ee`); PR #3 in festgehalten
-ist geschlossen; der Ledger-Inhalt steht in Spec §10 und `docs/vertagt.md`. Der zweite Befehl
-fasst `~/wettbuch` nicht an. Danach ist Doorway ohne offene Aufgabe.
+**Keiner.** Aufräumen ist durch (11.09. Nacht, von Felix selbst getippt): Zweig `hinterlegen`
+in Doorway und `probelauf-doorway-teil-3` in festgehalten gelöscht, Ledger-Ordner entfernt.
+Doorway wartet auf den ersten echten Eintrag. Wer weiterbauen will, fängt bei `docs/vertagt.md`
+an oder schreibt eine Spec für Teil 4 (Werkzeuge für den Halter, siehe Teil-3-Spec §9).
 
 ## Wartet auf Felix
 

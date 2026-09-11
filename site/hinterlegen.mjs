@@ -104,3 +104,15 @@ export function uebersetzen(e, buecher, jetzt) {
   ].join("\n");
   return { datei: kopf + "\n" + text, id, zielbuch, fehler: {} };
 }
+
+export const PR_URL_MAX = 8000; // ungemessen; Messung gegen GitHub in Plan-Task 6, dann Datum hier eintragen
+export const FESTGEHALTEN_SEITE = "https://felix3c.github.io/festgehalten";
+
+export const prUrl = (b, id, datei) =>
+  `https://github.com/${b.repo}/new/${b.zweig}/${b.pfad}?filename=${encodeURIComponent(id + ".md")}&value=${encodeURIComponent(datei)}`;
+export const urlZuLang = (url) => url.length > PR_URL_MAX;
+export const mailUrl = (b, id) => b.einreichung
+  ? `mailto:${b.einreichung}?subject=${encodeURIComponent("Hinterlegung " + id)}&body=${encodeURIComponent(`Bitte die heruntergeladene Datei ${id}.md anhängen. Zielbuch: ${b.titel}.`)}`
+  : null;
+export const statusUrl = (b) => `${FESTGEHALTEN_SEITE}/${b.ordner}/wettbuch.json`;
+export const prListeUrl = (b) => `https://github.com/${b.repo}/pulls`;

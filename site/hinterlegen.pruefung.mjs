@@ -1,4 +1,4 @@
-import { idBilden, kurzBilden, uebersetzen, datumPlus } from "./hinterlegen.mjs";
+import { idBilden, kurzBilden, uebersetzen, datumPlus, prUrl, urlZuLang, mailUrl, statusUrl, prListeUrl, PR_URL_MAX } from "./hinterlegen.mjs";
 
 const faelle = [];
 export function fall(name, fn) { faelle.push([name, fn]); }
@@ -69,6 +69,24 @@ fall("uebersetzen: punkt schreibt einheit, wert, toleranz", () => {
   const r = uebersetzen({ ...EINGABE_OK, typ: "punkt", wert: "2000", einheit: "Plätze", toleranz: "0.10" }, BUECHER, JETZT);
   gleich(Object.keys(r.fehler).length, 0, "ok");
   for (const z of ["typ: punkt", "einheit: \"Plätze\"", "toleranz: 0.10", "    wert: 2000"]) gleich(r.datei.includes(z), true, z);
+});
+fall("prUrl: GitHub neue Datei mit Pfad und Inhalt", () => {
+  const u = prUrl(BUECHER.buecher[1], "x-2026-01010000", "---\nid: x\n---\n");
+  gleich(u.startsWith("https://github.com/Felix3c/festgehalten/new/main/buecher/hinterlegt/wetten?filename=x-2026-01010000.md&value="), true, "anfang");
+  gleich(decodeURIComponent(u.split("&value=")[1]), "---\nid: x\n---\n", "inhalt");
+});
+fall("urlZuLang: an der Grenze", () => {
+  gleich(urlZuLang("a".repeat(PR_URL_MAX)), false, "genau");
+  gleich(urlZuLang("a".repeat(PR_URL_MAX + 1)), true, "drüber");
+});
+fall("mailUrl: nur mit einreichung", () => {
+  gleich(mailUrl(BUECHER.buecher[0], "k-1"), null, "koeln ohne");
+  const m = mailUrl(BUECHER.buecher[1], "k-1");
+  gleich(m.startsWith("mailto:buch@example.org?subject=Hinterlegung%20k-1&body="), true, "sammelbuch");
+});
+fall("statusUrl und prListeUrl", () => {
+  gleich(statusUrl(BUECHER.buecher[0]), "https://felix3c.github.io/festgehalten/koeln/wettbuch.json", "status");
+  gleich(prListeUrl(BUECHER.buecher[0]), "https://github.com/Felix3c/festgehalten/pulls", "prs");
 });
 
 export function pruefen() {

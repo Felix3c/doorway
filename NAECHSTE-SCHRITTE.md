@@ -1,6 +1,6 @@
 # Doorway — Nächste Schritte
 
-**Stand:** 11.09.2026, abends (Plan 2 Task 3 bis 6 fertig und reviewt; Final-Review über den Zweig gelaufen; die eine Fix-Welle dazu war beim Umsetzer, als die Sitzung endete)
+**Stand:** 11.09.2026, spät abends (Plan 2 Task 3 bis 6 fertig und reviewt; Final-Review, Fix-Welle `d4cb2b9` und Re-Review sauber; Zweig `hinterlegen` gepusht, PR noch nicht angelegt)
 **Führendes Dokument:** `docs/superpowers/specs/2026-08-24-doorway-design.md` (Präambel = Leitsatz); Teil 2: `docs/superpowers/specs/2026-08-27-doorway-teil-2-design.md`; **Teil 3: `docs/superpowers/specs/2026-09-05-doorway-teil-3-hinterlegung-design.md`**
 **Phase:** Teil 1 und Teil 2 veröffentlicht. Teil 3: Plan 1 (festgehalten) gemerged. Plan 2 (Doorway-Seite `hinterlegen.html`) auf dem Zweig `hinterlegen` fertig gebaut, Final-Fix-Welle offen, dann Push und Abnahme (Task 7).
 
@@ -70,15 +70,24 @@ Commit ab2ad9a bzw. FORMAT.md §8.4.
 - Chrome-Erweiterung war heute nicht verbunden; Browserarbeit lief über chrome-devtools
   (eigenes Chrome ohne GitHub-Login). `gh` fehlt weiterhin.
 
+## Nachtrag später am Abend
+
+- **Fix-Welle gelandet:** `d4cb2b9` fixt #1–#7, #12, #14 (yamlText escaped `\n`/`\r`/`\t`,
+  `quelle` quoted, `istZahl` nur Punkt, `--beispiel punkt`, Rundlauf parametrisiert, berührte
+  Felder, kein leerer Entwurf, ehrlicher Buchlisten-Hinweis, `aria-live` auf Statuszeile).
+  Gemessen danach: „ok: 13 Fälle", `pruefung.mjs` grün, `python -m pytest -q` 130 grün.
+- **Scoped Re-Review sauber**, alle zehn Findings adressiert. Neuer deferred minor: ein Entwurf
+  mit nur gewähltem Typ „Zahl" und sonst leeren Feldern wird nicht gespeichert.
+- **Zweig gepusht:** `origin/hinterlegen` = `d4cb2b9`, Upstream gesetzt. Kein PR angelegt
+  (kein `gh`, kein GitHub-Login in der Session).
+
 ## Nächster konkreter Schritt
 
-**Fix-Welle abschließen und gezielt re-reviewen.** Erst `git log --oneline f8d65bd..HEAD`
-und `git status`. Liegt der Fix-Commit vor: `node site/hinterlegen.pruefung.mjs` (Ziel
-„ok: 13 Fälle"), `node site/pruefung.mjs`, `python -m pytest -q` (Ziel 130), dann Review-Paket
-`review-package PLAN f8d65bd HEAD` und ein scoped Re-Review gegen die Findings #1–#7, #12,
-#14 (Ledger). Liegt kein Commit vor: Fix-Welle mit dem Ledger-Eintrag „Final-Fix-Welle"
-neu dispatchen (sonnet, FIX_BASE `f8d65bd`). Danach `git push -u origin hinterlegen`
-und Felix den Compare-Link für den PR gegen `master` geben.
+**PR anlegen und Probelauf (Task 7).** Felix öffnet
+https://github.com/Felix3c/doorway/compare/master...hinterlegen und legt den PR gegen
+`master` an (Titel „Teil 3: Hinterlegungs-Pfad — hinterlegen.html"). Nach dem Merge baut Pages
+`master`; dann Probelauf laut „Wartet auf Felix". Die Session danach: Ledger-Workspace erst
+nach dem Merge löschen (Ruling Q), `~/REIHENFOLGE.txt` angleichen.
 
 ## Wartet auf Felix
 

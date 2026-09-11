@@ -22,7 +22,7 @@ export function idBilden(institution, ordner, jetzt) {
 export const GRENZEN = { institution: 120, gesagtVon: 120, zitat: 400, bedingung: 200 };
 const ISO = /^\d{4}-\d{2}-\d{2}$/;
 const istUrl = (s) => /^https?:\/\/\S+$/.test(s);
-const istZahl = (s) => s !== "" && Number.isFinite(Number(s));
+const istZahl = (s) => /^[+-]?\d+(\.\d+)?$/.test(s);
 
 export function datumPlus(iso, { tage = 0, monate = 0 }) {
   const [j, m, t] = iso.split("-").map(Number);
@@ -32,7 +32,7 @@ export function datumPlus(iso, { tage = 0, monate = 0 }) {
   return isoDatum(ziel);
 }
 
-export const yamlText = (s) => `"${String(s).replace(/\\/g, "\\\\").replace(/"/g, '\\"')}"`;
+export const yamlText = (s) => `"${String(s).replace(/\\/g, "\\\\").replace(/"/g, '\\"').replace(/\n/g, "\\n").replace(/\r/g, "\\r").replace(/\t/g, "\\t")}"`;
 const deDatum = (iso) => { const [j, m, t] = iso.split("-"); return `${t}.${m}.${j}`; };
 
 function zielbuchFinden(institution, buecher) {
@@ -73,7 +73,7 @@ export function uebersetzen(e, buecher, jetzt) {
   const verfallAm = datumPlus(pruefungAm, { monate: 6 });
   const quelle = (e.quelleUrl || "").trim() || `https://github.com/${zielbuch.repo}/blob/${zielbuch.zweig}/${zielbuch.pfad}/${id}.md`;
   const punkt = e.typ === "punkt";
-  const kern = e.zitat.trim().replace(/[.!?]+$/, "");
+  const kern = e.zitat.trim().replace(/\s+/g, " ").replace(/[.!?]+$/, "");
   const frage = punkt
     ? `${kern} — welcher Wert in ${e.einheit.trim()} am ${deDatum(e.stichtag)}?`
     : `Trifft am ${deDatum(e.stichtag)} zu: ${kern}?`;
@@ -83,7 +83,7 @@ export function uebersetzen(e, buecher, jetzt) {
     : "vermerke: []";
   const kopf = [
     "---", `id: ${id}`, `institution: ${yamlText(institution)}`, `gesagt_von: ${yamlText(e.gesagtVon.trim())}`,
-    `gesagt_am: ${heute}`, `quelle: ${quelle}`, `zitat: ${yamlText(e.zitat.trim())}`, `frage: ${yamlText(frage)}`,
+    `gesagt_am: ${heute}`, `quelle: ${yamlText(quelle)}`, `zitat: ${yamlText(e.zitat.trim())}`, `frage: ${yamlText(frage)}`,
     `typ: ${e.typ}`, ...(punkt ? [`einheit: ${yamlText(e.einheit.trim())}`] : []),
     ...(punkt && (e.toleranz || "").trim() ? [`toleranz: ${e.toleranz.trim()}`] : []),
     `pruefung_am: ${pruefungAm}`, `verfall_am: ${verfallAm}`, "herkunft: hinterlegt",
@@ -105,7 +105,7 @@ export function uebersetzen(e, buecher, jetzt) {
   return { datei: kopf + "\n" + text, id, zielbuch, fehler: {} };
 }
 
-export const PR_URL_MAX = 6400; // gemessen am 11.09.2026 gegen github.com (curl, nicht eingeloggt): bis 6905 Zeichen HTTP 302, ab 7043 HTTP 500; Grenze = 6900 − 500 Sicherheitsrand
+export const PR_URL_MAX = 6400; // gemessen am 11.09.2026 gegen github.com (curl, nicht eingeloggt): bis 6905 Zeichen HTTP 302, ab 7043 HTTP 500; Grenze = 6905 − 500 Sicherheitsrand, abgerundet
 export const FESTGEHALTEN_SEITE = "https://felix3c.github.io/festgehalten";
 
 export const prUrl = (b, id, datei) =>

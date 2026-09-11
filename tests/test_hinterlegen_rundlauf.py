@@ -23,10 +23,13 @@ Test.
 """
 
 
-@pytest.mark.skipif(shutil.which("node") is None, reason="node fehlt")
-def test_beispieldatei_besteht_generatorpruefung(tmp_path: Path):
-    r = subprocess.run(["node", str(WURZEL / "site" / "hinterlegen.pruefung.mjs"), "--beispiel"],
-                       capture_output=True, text=True, encoding="utf-8", check=True)
+def _beispiel_pruefen(tmp_path: Path, variante: str):
+    """Erzeugt die Beispieldatei (ggf. für eine Variante) und lässt sie vom echten
+    festgehalten-Generator lesen und prüfen. Gibt (buch, wetten[0]) zurück."""
+    argv = ["node", str(WURZEL / "site" / "hinterlegen.pruefung.mjs"), "--beispiel"]
+    if variante:
+        argv.append(variante)
+    r = subprocess.run(argv, capture_output=True, text=True, encoding="utf-8", check=True)
     datei = r.stdout
     assert datei.startswith("---\nid: ")
     ident = datei.splitlines()[1].split(": ", 1)[1]
@@ -39,6 +42,17 @@ def test_beispieldatei_besteht_generatorpruefung(tmp_path: Path):
     fehler = pruefen.buch_pruefen(buch)
 
     assert fehler == [], [f"{f.datei}: {f.feld} — {f.text}" for f in fehler]
-    w = buch["wetten"][0]
-    assert w["herkunft"] == "hinterlegt"
-    assert w["prognosen"][0]["wert"] == 1.0
+    return buch, buch["wetten"][0]
+
+
+@pytest.mark.skipif(shutil.which("node") is None, reason="node fehlt")
+@pytest.mark.parametrize("variante", ["", "punkt"])
+def test_beispieldatei_besteht_generatorpruefung(tmp_path: Path, variante: str):
+    _buch, w = _beispiel_pruefen(tmp_path, variante)
+    if variante == "":
+        assert w["herkunft"] == "hinterlegt"
+        assert w["prognosen"][0]["wert"] == 1.0
+    else:
+        assert w["typ"] == "punkt"
+        assert w["prognosen"][0]["wert"] == 2000
+        assert w.get("einheit") == "Plätze"

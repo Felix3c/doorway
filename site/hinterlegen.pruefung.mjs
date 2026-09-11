@@ -1,4 +1,4 @@
-import { idBilden, kurzBilden, uebersetzen, datumPlus, prUrl, urlZuLang, mailUrl, statusUrl, prListeUrl, PR_URL_MAX } from "./hinterlegen.mjs";
+import { idBilden, kurzBilden, uebersetzen, datumPlus, prUrl, urlZuLang, mailUrl, statusUrl, prListeUrl, PR_URL_MAX, yamlText } from "./hinterlegen.mjs";
 
 const faelle = [];
 export function fall(name, fn) { faelle.push([name, fn]); }
@@ -40,7 +40,7 @@ fall("uebersetzen: gültige Eingabe, Sammelbuch", () => {
   gleich(r.zielbuch.ordner, "hinterlegt", "zielbuch");
   gleich(r.id, "buergerverein-nord-2026-09051432", "id");
   for (const z of ["id: buergerverein-nord-2026-09051432", "institution: \"Bürgerverein Nord\"", "gesagt_am: 2026-09-05",
-    "quelle: https://github.com/Felix3c/festgehalten/blob/main/buecher/hinterlegt/wetten/buergerverein-nord-2026-09051432.md",
+    "quelle: \"https://github.com/Felix3c/festgehalten/blob/main/buecher/hinterlegt/wetten/buergerverein-nord-2026-09051432.md\"",
     "typ: ja_nein", "pruefung_am: 2027-07-01", "verfall_am: 2028-01-01", "herkunft: hinterlegt",
     "    wert: 1.00", "    art: angekuendigt", "ausgang: null", "## Nachweis", "## Bedingung", "Bewilligung des Förderantrags", "31.03.2027"]) {
     gleich(r.datei.includes(z), true, "enthält " + z);
@@ -50,7 +50,7 @@ fall("uebersetzen: Zielbuch aus Liste, eigene Quelle", () => {
   const r = uebersetzen({ ...EINGABE_OK, institution: "Stadt Köln", quelleUrl: "https://stadt-koeln.example/erwartung" }, BUECHER, JETZT);
   gleich(r.zielbuch.ordner, "koeln", "koeln");
   gleich(r.id, "koeln-2026-09051432", "id aus ordner");
-  gleich(r.datei.includes("quelle: https://stadt-koeln.example/erwartung"), true, "eigene quelle");
+  gleich(r.datei.includes('quelle: "https://stadt-koeln.example/erwartung"'), true, "eigene quelle");
 });
 fall("uebersetzen: Fehler je Regel", () => {
   const f = (aenderung) => uebersetzen({ ...EINGABE_OK, ...aenderung }, BUECHER, JETZT).fehler;
@@ -65,6 +65,17 @@ fall("uebersetzen: Fehler je Regel", () => {
   gleich("einheit" in f({ typ: "punkt", wert: "3", einheit: "" }), true, "punkt ohne einheit");
   gleich("wert" in f({ typ: "punkt", wert: "abc", einheit: "Mio EUR" }), true, "punkt wert keine zahl");
   gleich("toleranz" in f({ typ: "punkt", wert: "3", einheit: "Mio EUR", toleranz: "x" }), true, "toleranz keine zahl");
+  gleich("wert" in f({ typ: "punkt", wert: "1e5", einheit: "Mio EUR" }), true, "punkt wert 1e5 unzulässig");
+  gleich("wert" in f({ typ: "punkt", wert: "-2.5", einheit: "Mio EUR" }), false, "punkt wert -2.5 zulässig");
+});
+fall("yamlText: Anführungszeichen, Backslash, Zeilenumbruch", () => {
+  gleich(yamlText('a"b'), "\"a\\\"b\"", "anführungszeichen");
+  gleich(yamlText("a\\b").includes("\\\\"), true, "backslash");
+  gleich(yamlText("x\ny"), "\"x\\ny\"", "zeilenumbruch");
+  const r = uebersetzen({ ...EINGABE_OK, zitat: "Erste Zeile.\n---\nZweite Zeile." }, BUECHER, JETZT);
+  gleich(r.datei.includes('zitat: "Erste Zeile.\\n---\\nZweite Zeile."'), true, "zitat escaped");
+  const zeileFrage = r.datei.split("\n").find((z) => z.startsWith("frage:"));
+  gleich(zeileFrage.includes("Erste Zeile. --- Zweite Zeile"), true, "frage kollabiert, kein Zeilenumbruch");
 });
 fall("uebersetzen: punkt schreibt einheit, wert, toleranz", () => {
   const r = uebersetzen({ ...EINGABE_OK, typ: "punkt", wert: "2000", einheit: "Plätze", toleranz: "0.10" }, BUECHER, JETZT);
@@ -98,12 +109,18 @@ export function pruefen() {
   return fehler;
 }
 
-if (process.argv.includes("--beispiel")) {
-  process.stdout.write(uebersetzen(EINGABE_OK, BUECHER, JETZT).datei);
-  process.exit(0);
-}
-
 if (process.argv[1] && process.argv[1].endsWith("hinterlegen.pruefung.mjs")) {
+  // --beispiel: Beispieldatei für den Python-Rundlauf (tests/test_hinterlegen_rundlauf.py)
+  const beispielIndex = process.argv.indexOf("--beispiel");
+  if (beispielIndex !== -1) {
+    const variante = process.argv[beispielIndex + 1];
+    const eingabe = variante === "punkt"
+      ? { ...EINGABE_OK, typ: "punkt", wert: "2000", einheit: "Plätze", toleranz: "0.10", bedingung: "", bedingungFrist: "" }
+      : EINGABE_OK;
+    process.stdout.write(uebersetzen(eingabe, BUECHER, JETZT).datei);
+    process.exit(0);
+  }
+
   const f = pruefen();
   console.log(f === 0 ? `ok: ${faelle.length} Fälle hinterlegen` : `${f} Fehler`);
   process.exit(f === 0 ? 0 : 1);

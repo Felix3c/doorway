@@ -54,10 +54,11 @@
       <p><button type="button" id="k-entwurf-loeschen">Entwurf löschen</button></p>
     </form>
   </section>
-  <section id="vorschau" aria-live="polite" hidden>
+  <section id="vorschau" hidden>
+    <p id="vorschau-stand" class="hinweis" aria-live="polite"></p>
     <h2>So wird der Eintrag im Buch stehen</h2>
     <p class="hinweis">Das hier wird nach Aufnahme nicht mehr geändert. Prüfen Sie Stichtag und Ort des Nachweises.</p>
-    <pre id="datei"></pre>
+    <pre id="datei" tabindex="0" aria-label="Eintrag im festgehalten-Format"></pre>
     <p class="optionen">
       <a id="k-pr" class="button" target="_blank" rel="noopener">Als Pull Request anlegen</a>
       <a id="k-download" class="button">Herunterladen</a>

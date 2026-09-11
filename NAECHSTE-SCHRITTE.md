@@ -23,9 +23,10 @@ Commit ab2ad9a bzw. FORMAT.md §8.4.
 ## Wo wir stehen
 
 **Live:** https://felix3c.github.io/doorway/ — Spiegel, Panel, Nein-Register, Quellen (Teil 1 + 2,
-abgenommen 01.09.) und seit heute https://felix3c.github.io/doorway/hinterlegen.html (Teil 3).
+abgenommen 01.09.) und seit 11.09. https://felix3c.github.io/doorway/hinterlegen.html (Teil 3).
 
-**Git:** Zweig `master`, sauber, nichts ungepusht (Stand: `git log -1`).
+**Git:** Zweig `master`, sauber, nichts ungepusht. `origin/master` = `0588cd5`.
+Einziger Zweig ist `master`.
 Merge-Commit von Teil 3: `80863ee` (PR #1, 14 Commits, 13 Dateien).
 
 **Teil 3 ist fertig.** Der Hinterlegungs-Pfad nimmt sieben Antworten, erzeugt daraus eine Datei
@@ -41,7 +42,7 @@ Nichts verlässt den Browser außer der Statusabfrage auf Klick.
 - `site/daten/buecher.json` — Kopie der Buchliste, Stand 2026-09-08, heute geprüft: byteidentisch
   mit der Live-Liste auf festgehalten.
 
-**Gemessen in dieser Sitzung:** `node site/hinterlegen.pruefung.mjs` „ok: 13 Fälle",
+**Gemessen am 11.09.:** `node site/hinterlegen.pruefung.mjs` „ok: 13 Fälle",
 `node site/pruefung.mjs` grün, `python -m pytest -q` 130 grün ohne Warnungen.
 Die 130 setzen voraus, dass `wettbuch` importierbar ist; ohne das dev-Extra wird der Rundlauf
 still übersprungen.
@@ -50,7 +51,7 @@ still übersprungen.
 `GRENZEN.zitat` 400, `bedingung` 200. Rohdaten: bis 6905 Zeichen HTTP 302, ab 7043 HTTP 500,
 ab 12011 HTTP 414.
 
-**Abnahme (Task 7), heute durch die Session in Felix' Chrome auf seine Bitte:**
+**Abnahme (Task 7), am 11.09. durch die Session in Felix' Chrome auf seine Bitte:**
 
 - PR #1 in Doorway angelegt und gemerged; Pages war nach etwa einer Minute live.
 - Probelauf auf der Live-Seite: „Probelauf e.V.", id `probelauf-e-v-2026-09111845`,
@@ -88,7 +89,7 @@ an oder schreibt eine Spec für Teil 4 (Werkzeuge für den Halter, siehe Teil-3-
   schon dorthin; ohne Alias laufen Mails ins Leere.
 - **Erster echter hinterlegter Eintrag**, nicht von Felix selbst: wem die Seite gezeigt wird.
 - Später, ohne Eile: `pip install -e ".[dev]"` in `~/doorway`, sobald `~/wettbuch` frei ist.
-  Heute bewusst nicht ausgeführt (Ruling D), weil dort ein anderer Tab arbeitete und der Befehl
+  Am 11.09. bewusst nicht ausgeführt, weil dort ein anderer Tab arbeitete und der Befehl
   dessen Editable-Installation durch den gepinnten Stand `f848d80` ersetzt hätte.
 
 ## Blocker

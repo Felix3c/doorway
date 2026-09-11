@@ -1,8 +1,8 @@
 # Doorway — Nächste Schritte
 
-**Stand:** 11.09.2026, spät abends (Plan 2 Task 3 bis 6 fertig und reviewt; Final-Review, Fix-Welle `d4cb2b9` und Re-Review sauber; Zweig `hinterlegen` gepusht, PR noch nicht angelegt)
+**Stand:** 11.09.2026, spät abends (Plan 2 komplett: PR #1 gemerged, `hinterlegen.html` live, Probelauf bis zum PR #3 in festgehalten mit grünem Check, PR geschlossen)
 **Führendes Dokument:** `docs/superpowers/specs/2026-08-24-doorway-design.md` (Präambel = Leitsatz); Teil 2: `docs/superpowers/specs/2026-08-27-doorway-teil-2-design.md`; **Teil 3: `docs/superpowers/specs/2026-09-05-doorway-teil-3-hinterlegung-design.md`**
-**Phase:** Teil 1 und Teil 2 veröffentlicht. Teil 3: Plan 1 (festgehalten) gemerged. Plan 2 (Doorway-Seite `hinterlegen.html`) auf dem Zweig `hinterlegen` fertig gebaut, Final-Fix-Welle offen, dann Push und Abnahme (Task 7).
+**Phase:** Teil 1, 2 und 3 veröffentlicht. Teil 3 ist abgenommen (Task 7 erledigt). Es gibt keinen laufenden Plan.
 
 ---
 
@@ -81,23 +81,35 @@ Commit ab2ad9a bzw. FORMAT.md §8.4.
 - **Zweig gepusht:** `origin/hinterlegen` = `d4cb2b9`, Upstream gesetzt. Kein PR angelegt
   (kein `gh`, kein GitHub-Login in der Session).
 
+## Abnahme (Task 7, 11.09. spät, auf Felix' Bitte durch die Session in seinem Chrome)
+
+- **PR #1 in Doorway** angelegt und als Merge-Commit `80863ee` gemerged (14 Commits, 13 Dateien).
+  Pages war nach etwa einer Minute live: https://felix3c.github.io/doorway/hinterlegen.html
+- **Probelauf:** „Probelauf e.V." auf der Live-Seite, id `probelauf-e-v-2026-09111845`, PR-URL
+  2213 Zeichen. GitHub „New file" war vollständig vorbefüllt (Dateiname und alle 40 Zeilen).
+  Commit auf Zweig `probelauf-doorway-teil-3`, PR #3 in festgehalten, Check `pruefen`
+  completed/success, PR geschlossen, nicht gemerged.
+- **Status auf der Seite:** Probelauf-id → „Noch nicht aufgenommen" mit Link auf die PR-Liste;
+  `koeln-2025-001` → „aufgenommen" mit Link auf `koeln/wette/koeln-2025-001.html`.
+- Der Probelauf-Entwurf wurde im Browser wieder gelöscht.
+- **Weiterhin ungemessen:** ob GitHub bei einer URL nahe `PR_URL_MAX` (6400) noch vorbefüllt.
+  Der Probelauf lag bei 2213 Zeichen. Wer es wissen will: Zitat 400 und Bedingung 200 Zeichen
+  mit vielen Umlauten füllen (URL etwa 5800) und Knopf 1 drücken.
+
 ## Nächster konkreter Schritt
 
-**PR anlegen und Probelauf (Task 7).** Felix öffnet
-https://github.com/Felix3c/doorway/compare/master...hinterlegen und legt den PR gegen
-`master` an (Titel „Teil 3: Hinterlegungs-Pfad — hinterlegen.html"). Nach dem Merge baut Pages
-`master`; dann Probelauf laut „Wartet auf Felix". Die Session danach: Ledger-Workspace erst
-nach dem Merge löschen (Ruling Q), `~/REIHENFOLGE.txt` angleichen.
+**Aufräumen und den ersten echten Eintrag abwarten.** Konkret: Zweig `hinterlegen` in
+Doorway und Zweig `probelauf-doorway-teil-3` in festgehalten auf GitHub löschen (beide gemerged
+bzw. geschlossen), dann den Ledger-Workspace `.superpowers/sdd/2026-09-05-…` entfernen
+(Ruling Q, Merge ist durch). Die vertagten Kleinigkeiten aus dem Final-Review (#8, #9, #13,
+#15, #16, Entwurf nur mit Typ) stehen im Ledger — vor dem Löschen in ein Issue oder in diese
+Datei übernehmen, wenn sie erhalten bleiben sollen.
 
 ## Wartet auf Felix
 
-- **Probelauf (Plan 2, Task 7):** nach dem Push auf dem Zweig oder nach dem Merge live:
-  erfundener Fall „Probelauf e.V." auf `hinterlegen.html` bis zum PR im Sammelbuch;
-  dabei prüfen, ob GitHub die Datei bei ~5000–6400 Zeichen URL wirklich vorbefüllt.
-  PR-Titel mit „Probelauf" beginnen, Check grün erwartet, PR schließen.
 - **Alias `hinterlegt@belegbar.eu` bei ImprovMX anlegen** — steht im Sammelbuch, ohne Alias
-  laufen Mails ins Leere.
-- **Merge des Doorway-PRs nach `master`** nach Probelauf; Pages baut nur `master`.
+  laufen Mails ins Leere. Der Mail-Knopf auf der Seite zeigt schon dorthin.
+- **Erster echter hinterlegter Eintrag** (nicht Felix' eigener): wem die Seite gezeigt wird.
 - Später: `pip install -e ".[dev]"` in `~/doorway`, sobald `~/wettbuch` frei ist (ersetzt
   den Editable-Install durch den gepinnten Stand `f848d80`).
 

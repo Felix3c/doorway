@@ -85,6 +85,7 @@ async function statusNachsehen() {
   const praefix = id.split("-")[0];
   const kandidaten = buecher.buecher.filter((b) => b.ordner === praefix);
   const liste = kandidaten.length ? kandidaten : buecher.buecher;
+  if (liste.length === 0) { out.textContent = "Keine Buchliste geladen, bitte Seite neu laden."; return; }
   out.textContent = "Sehe nach …";
   for (const b of liste) {
     try {
@@ -97,8 +98,12 @@ async function statusNachsehen() {
   linkText(out, prListeUrl(liste[0]), "offene Pull Requests", "Noch nicht aufgenommen. Eingereicht? Siehe ", ".");
 }
 async function start() {
-  try { buecher = await (await fetch("daten/buecher.json")).json(); } catch { $("buecher-stand").textContent = "Buchliste konnte nicht geladen werden."; return; }
-  $("buecher-stand").textContent = `Buchliste vom ${buecher.stand}, Quelle: ${FESTGEHALTEN_SEITE}/buecher.json`;
+  let geladen = false;
+  try { buecher = await (await fetch("daten/buecher.json")).json(); geladen = true; }
+  catch { buecher = { stand: "?", buecher: [] }; }
+  $("buecher-stand").textContent = geladen
+    ? `Buchliste vom ${buecher.stand}, Quelle: ${FESTGEHALTEN_SEITE}/buecher.json`
+    : "Buchliste konnte nicht geladen werden. Das Formular funktioniert trotzdem, nur die Erkennung des Zielbuchs fehlt.";
   const dl = $("buecher-liste");
   for (const b of buecher.buecher) if (b.institution) { const o = document.createElement("option"); o.value = b.institution; dl.appendChild(o); }
   typKnoepfe(); entwurfLaden();

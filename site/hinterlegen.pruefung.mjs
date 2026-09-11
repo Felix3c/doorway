@@ -97,6 +97,11 @@ export function pruefen() {
   return fehler;
 }
 
+if (process.argv.includes("--beispiel")) {
+  process.stdout.write(uebersetzen(EINGABE_OK, BUECHER, JETZT).datei);
+  process.exit(0);
+}
+
 if (process.argv[1] && process.argv[1].endsWith("hinterlegen.pruefung.mjs")) {
   const f = pruefen();
   console.log(f === 0 ? `ok: ${faelle.length} Fälle hinterlegen` : `${f} Fehler`);

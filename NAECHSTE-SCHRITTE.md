@@ -25,7 +25,7 @@ Commit ab2ad9a bzw. FORMAT.md §8.4.
 **Live:** https://felix3c.github.io/doorway/ — Spiegel, Panel, Nein-Register, Quellen (Teil 1 + 2,
 abgenommen 01.09.) und seit 11.09. https://felix3c.github.io/doorway/hinterlegen.html (Teil 3).
 
-**Git:** Zweig `master`, sauber, nichts ungepusht. `origin/master` = `0588cd5`.
+**Git:** Zweig `master`, sauber, nichts ungepusht. `origin/master` = `aebfaf0`.
 Einziger Zweig ist `master`.
 Merge-Commit von Teil 3: `80863ee` (PR #1, 14 Commits, 13 Dateien).
 
@@ -42,8 +42,8 @@ Schleifenerkennung im Spam, das ist normal).
 - `tests/test_hinterlegen_rundlauf.py` — die erzeugte Datei besteht `lesen` und `pruefen` des
   echten festgehalten-Generators, in beiden Varianten (`ja_nein`, `punkt`).
 - `site/hinterlegen.html` + `site/hinterlegen-seite.js` — Formular, Vorschau, Entwurf, Status.
-- `site/daten/buecher.json` — Kopie der Buchliste, Stand 2026-09-08, heute geprüft: byteidentisch
-  mit der Live-Liste auf festgehalten.
+- `site/daten/buecher.json` — Kopie der Buchliste, Stand 2026-09-08, am 11.09. geprüft:
+  byteidentisch mit der Live-Liste auf festgehalten.
 
 **Gemessen am 11.09.:** `node site/hinterlegen.pruefung.mjs` „ok: 13 Fälle",
 `node site/pruefung.mjs` grün, `python -m pytest -q` 130 grün ohne Warnungen.
@@ -73,7 +73,7 @@ vielen Umlauten füllen (URL dann etwa 5800) und Knopf 1 drücken.
 **Review-Spuren.** Jeder Task hat ein eigenes Review, dazu ein Final-Review über den ganzen
 Zweig (fand einen echten Fehler: `yamlText` escapte keine Zeilenumbrüche, ein Enter im Zitat
 hätte YAML gefaltet, eine `---`-Zeile die Datei unlesbar gemacht), eine Fix-Welle `d4cb2b9` und
-ein sauberes Re-Review. Die Rulings A–Q sind seit heute Nacht als **§10 der Teil-3-Spec**
+ein sauberes Re-Review. Die Rulings A–Q sind seit dem 11.09. als **§10 der Teil-3-Spec**
 gesichert; der Ledger-Ordner ist gelöscht.
 
 **Vertagte Kleinigkeiten** aus allen Reviews, bewusst nicht gefixt, stehen jetzt in

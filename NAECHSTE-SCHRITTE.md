@@ -1,6 +1,6 @@
 # Doorway — Nächste Schritte
 
-**Stand:** 11.09.2026, Nacht (Teil 3 live und abgenommen; aufgeräumt, nichts offen)
+**Stand:** 12.09.2026 (Alias hinterlegt@ aktiv und getestet; sonst wie 11.09. Nacht, nichts offen)
 **Führendes Dokument:** `docs/superpowers/specs/2026-08-24-doorway-design.md` (Präambel = Leitsatz); Teil 2: `docs/superpowers/specs/2026-08-27-doorway-teil-2-design.md`; Teil 3: `docs/superpowers/specs/2026-09-05-doorway-teil-3-hinterlegung-design.md`
 **Phase:** Teil 1, 2 und 3 veröffentlicht. Kein Plan läuft. Doorway wartet auf den ersten echten hinterlegten Eintrag.
 
@@ -31,7 +31,10 @@ Merge-Commit von Teil 3: `80863ee` (PR #1, 14 Commits, 13 Dateien).
 
 **Teil 3 ist fertig.** Der Hinterlegungs-Pfad nimmt sieben Antworten, erzeugt daraus eine Datei
 im festgehalten-Format v1 und übergibt sie als vorbefüllten Pull Request, Download oder Mail.
-Nichts verlässt den Browser außer der Statusabfrage auf Klick.
+Nichts verlässt den Browser außer der Statusabfrage auf Klick. Der Mail-Weg ist seit 12.09.
+scharf: Alias `hinterlegt@belegbar.eu` bei ImprovMX angelegt, Weiterleitung an Felix' Gmail,
+von einer fremden Adresse getestet und angekommen (Test vom eigenen Gmail landet wegen Googles
+Schleifenerkennung im Spam, das ist normal).
 
 - `site/hinterlegen.mjs` — reines Modul: id-Bildung, Eingabeprüfung, Dateierzeugung, Adressen.
 - `site/hinterlegen.pruefung.mjs` — 13 Node-Fälle, eingehängt in `site/pruefung.mjs`;
@@ -85,8 +88,6 @@ an oder schreibt eine Spec für Teil 4 (Werkzeuge für den Halter, siehe Teil-3-
 
 ## Wartet auf Felix
 
-- **Alias `hinterlegt@belegbar.eu` bei ImprovMX anlegen.** Der Mail-Knopf auf der Seite zeigt
-  schon dorthin; ohne Alias laufen Mails ins Leere.
 - **Erster echter hinterlegter Eintrag**, nicht von Felix selbst: wem die Seite gezeigt wird.
 - Später, ohne Eile: `pip install -e ".[dev]"` in `~/doorway`, sobald `~/wettbuch` frei ist.
   Am 11.09. bewusst nicht ausgeführt, weil dort ein anderer Tab arbeitete und der Befehl

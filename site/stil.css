@@ -210,3 +210,9 @@ footer .stand { display: block; margin-top: var(--sp-6); border: 0; padding: 0; 
   header { padding: var(--sp-8) var(--sp-4) var(--sp-6); }
   #spiegel, .karte { padding: var(--sp-4); }
 }
+
+/* Textseiten (Impressum, Datenschutz) */
+.rechtstext h2 { font-size: 1.15rem; margin: var(--sp-8) 0 var(--sp-2); }
+.rechtstext h2:first-child { margin-top: 0; }
+.rechtstext p { max-width: 46rem; margin: 0 0 var(--sp-3); }
+.rechtstext code { font: 0.9em var(--mono); }

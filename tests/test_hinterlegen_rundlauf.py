@@ -29,7 +29,8 @@ def _beispiel_pruefen(tmp_path: Path, variante: str):
     argv = ["node", str(WURZEL / "site" / "hinterlegen.pruefung.mjs"), "--beispiel"]
     if variante:
         argv.append(variante)
-    r = subprocess.run(argv, capture_output=True, text=True, encoding="utf-8", check=True)
+    r = subprocess.run(argv, capture_output=True, text=True, encoding="utf-8")
+    assert r.returncode == 0, f"node endete mit {r.returncode}:\n{r.stderr}"
     datei = r.stdout
     assert datei.startswith("---\nid: ")
     ident = datei.splitlines()[1].split(": ", 1)[1]

@@ -21,8 +21,8 @@ fall("id: aus Institution, wenn frei", () => {
 });
 
 export const BUECHER = { stand: "2026-09-05", buecher: [
-  { ordner: "koeln", titel: "Köln gegen Köln", institution: "Stadt Köln", halter: "Felix Lind", kontakt: "https://belegbar.eu", einreichung: null, repo: "Felix3c/festgehalten", zweig: "main", pfad: "buecher/koeln/wetten", sammelbuch: false },
-  { ordner: "hinterlegt", titel: "Hinterlegt", institution: null, halter: "Felix Lind", kontakt: "https://belegbar.eu", einreichung: "buch@example.org", repo: "Felix3c/festgehalten", zweig: "main", pfad: "buecher/hinterlegt/wetten", sammelbuch: true },
+  { ordner: "koeln", titel: "Köln gegen Köln", institution: "Stadt Köln", halter: "Felix Lind", kontakt: "https://belegbar.eu", einreichung: null, repo: "Felix3c/festgehalten", zweig: "master", pfad: "buecher/koeln/wetten", sammelbuch: false },
+  { ordner: "hinterlegt", titel: "Hinterlegt", institution: null, halter: "Felix Lind", kontakt: "https://belegbar.eu", einreichung: "buch@example.org", repo: "Felix3c/festgehalten", zweig: "master", pfad: "buecher/hinterlegt/wetten", sammelbuch: true },
 ]};
 export const EINGABE_OK = {
   institution: "Bürgerverein Nord", gesagtVon: "Vorstand", zitat: "Bis Ende Juni 2027 liegt ein spielbarer Build öffentlich vor.",
@@ -40,7 +40,7 @@ fall("uebersetzen: gültige Eingabe, Sammelbuch", () => {
   gleich(r.zielbuch.ordner, "hinterlegt", "zielbuch");
   gleich(r.id, "buergerverein-nord-2026-09051432", "id");
   for (const z of ["id: buergerverein-nord-2026-09051432", "institution: \"Bürgerverein Nord\"", "gesagt_am: 2026-09-05",
-    "quelle: \"https://github.com/Felix3c/festgehalten/blob/main/buecher/hinterlegt/wetten/buergerverein-nord-2026-09051432.md\"",
+    "quelle: \"https://github.com/Felix3c/festgehalten/blob/master/buecher/hinterlegt/wetten/buergerverein-nord-2026-09051432.md\"",
     "typ: ja_nein", "pruefung_am: 2027-07-01", "verfall_am: 2028-01-01", "herkunft: hinterlegt",
     "    wert: 1.00", "    art: angekuendigt", "ausgang: null", "## Nachweis", "## Bedingung", "Bewilligung des Förderantrags", "31.03.2027"]) {
     gleich(r.datei.includes(z), true, "enthält " + z);
@@ -68,6 +68,20 @@ fall("uebersetzen: Fehler je Regel", () => {
   gleich("wert" in f({ typ: "punkt", wert: "1e5", einheit: "Mio EUR" }), true, "punkt wert 1e5 unzulässig");
   gleich("wert" in f({ typ: "punkt", wert: "-2.5", einheit: "Mio EUR" }), false, "punkt wert -2.5 zulässig");
 });
+fall("uebersetzen: Frist ohne Bedingung bleibt folgenlos", () => {
+  const r = uebersetzen({ ...EINGABE_OK, bedingung: "", bedingungFrist: "2027-03-31" }, BUECHER, JETZT);
+  gleich(Object.keys(r.fehler).length, 0, "keine Fehler " + JSON.stringify(r.fehler));
+  gleich(r.datei.includes("## Bedingung"), false, "kein Abschnitt Bedingung");
+  gleich(r.datei.includes("vermerke: []"), true, "leere Vermerke");
+  gleich("bedingungFrist" in uebersetzen({ ...EINGABE_OK, bedingung: "", bedingungFrist: "kein-datum" }, BUECHER, JETZT).fehler, false, "ungültige Frist ohne Bedingung");
+});
+fall("uebersetzen: ungültiger typ", () => {
+  for (const typ of ["", "zahl", undefined]) {
+    const r = uebersetzen({ ...EINGABE_OK, typ }, BUECHER, JETZT);
+    gleich("typ" in r.fehler, true, "typ " + JSON.stringify(typ));
+    gleich(r.datei, "", "keine Datei bei typ " + JSON.stringify(typ));
+  }
+});
 fall("yamlText: Anführungszeichen, Backslash, Zeilenumbruch", () => {
   gleich(yamlText('a"b'), "\"a\\\"b\"", "anführungszeichen");
   gleich(yamlText("a\\b").includes("\\\\"), true, "backslash");
@@ -84,7 +98,7 @@ fall("uebersetzen: punkt schreibt einheit, wert, toleranz", () => {
 });
 fall("prUrl: GitHub neue Datei mit Pfad und Inhalt", () => {
   const u = prUrl(BUECHER.buecher[1], "x-2026-01010000", "---\nid: x\n---\n");
-  gleich(u.startsWith("https://github.com/Felix3c/festgehalten/new/main/buecher/hinterlegt/wetten?filename=x-2026-01010000.md&value="), true, "anfang");
+  gleich(u.startsWith("https://github.com/Felix3c/festgehalten/new/master/buecher/hinterlegt/wetten?filename=x-2026-01010000.md&value="), true, "anfang");
   gleich(decodeURIComponent(u.split("&value=")[1]), "---\nid: x\n---\n", "inhalt");
 });
 fall("urlZuLang: an der Grenze", () => {

@@ -37,7 +37,7 @@ von einer fremden Adresse getestet und angekommen (Test vom eigenen Gmail landet
 Schleifenerkennung im Spam, das ist normal).
 
 - `site/hinterlegen.mjs` — reines Modul: id-Bildung, Eingabeprüfung, Dateierzeugung, Adressen.
-- `site/hinterlegen.pruefung.mjs` — 13 Node-Fälle, eingehängt in `site/pruefung.mjs`;
+- `site/hinterlegen.pruefung.mjs` — 15 Node-Fälle (11.10.: +Frist ohne Bedingung, +ungültiger `typ`; Fixture `BUECHER` jetzt `zweig: master` wie live), eingehängt in `site/pruefung.mjs`;
   `--beispiel [punkt]` gibt die Beispieldatei aus.
 - `tests/test_hinterlegen_rundlauf.py` — die erzeugte Datei besteht `lesen` und `pruefen` des
   echten festgehalten-Generators, in beiden Varianten (`ja_nein`, `punkt`).
@@ -82,6 +82,9 @@ gesichert; der Ledger-Ordner ist gelöscht.
 
 **Vertagte Kleinigkeiten** aus allen Reviews, bewusst nicht gefixt, stehen jetzt in
 `docs/vertagt.md` (zehn Punkte, dazu die ungemessene Vorbefüllung nahe 6400 Zeichen).
+**11.10.2026 (Dauerlauf):** drei Test-Punkte erledigt und gestrichen (Frist ohne Bedingung,
+ungültiger `typ`, Fixture-Zweig `master`, Rundlauf meldet Node-Fehler als Assertion mit stderr);
+sieben Punkte bleiben. Lokal committet, Push macht Felix.
 
 ## Nächster konkreter Schritt
 

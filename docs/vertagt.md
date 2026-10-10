@@ -25,10 +25,6 @@ Folge-PR, Test zuerst, wo es einen gibt. Erledigtes hier streichen.
 - `pytest.importorskip("wettbuch")` überspringt den Rundlauf still, wenn der Generator
   nicht installiert ist. Kein pytest-CI im Repo würde das bemerken. `python -m pytest -q`
   meldet dann 128 statt 130.
-- `subprocess.run(..., check=True)` liefert bei einem Node-Fehler einen Traceback statt
-  einer Assertion mit Ausgabe.
-- Die Fixture `BUECHER` nutzt `zweig: main`; live steht in `buecher.json` `master`.
-- Es fehlen Tests für `bedingungFrist` ohne `bedingung` und für einen ungültigen `typ`.
 
 ## Ungemessen
 

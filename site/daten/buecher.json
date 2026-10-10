@@ -1,6 +1,42 @@
 {
-  "stand": "2026-09-08",
+  "stand": "2026-10-11",
   "buecher": [
+    {
+      "ordner": "aachen",
+      "titel": "Aachen gegen Aachen",
+      "institution": "Stadt Aachen",
+      "halter": "Felix Lind",
+      "kontakt": "https://belegbar.eu",
+      "einreichung": null,
+      "repo": "Felix3c/festgehalten",
+      "zweig": "master",
+      "pfad": "buecher/aachen/wetten",
+      "sammelbuch": false
+    },
+    {
+      "ordner": "bielefeld",
+      "titel": "Bielefeld gegen Bielefeld",
+      "institution": "Stadt Bielefeld",
+      "halter": "Felix Lind",
+      "kontakt": "https://belegbar.eu",
+      "einreichung": null,
+      "repo": "Felix3c/festgehalten",
+      "zweig": "master",
+      "pfad": "buecher/bielefeld/wetten",
+      "sammelbuch": false
+    },
+    {
+      "ordner": "bochum",
+      "titel": "Bochum gegen Bochum",
+      "institution": "Stadt Bochum",
+      "halter": "Felix Lind",
+      "kontakt": "https://belegbar.eu",
+      "einreichung": null,
+      "repo": "Felix3c/festgehalten",
+      "zweig": "master",
+      "pfad": "buecher/bochum/wetten",
+      "sammelbuch": false
+    },
     {
       "ordner": "bonn",
       "titel": "Bonn gegen Bonn",
@@ -11,6 +47,18 @@
       "repo": "Felix3c/festgehalten",
       "zweig": "master",
       "pfad": "buecher/bonn/wetten",
+      "sammelbuch": false
+    },
+    {
+      "ordner": "bund",
+      "titel": "Bund gegen Bund",
+      "institution": "Bundesregierung",
+      "halter": "Felix Lind",
+      "kontakt": "https://belegbar.eu",
+      "einreichung": null,
+      "repo": "Felix3c/festgehalten",
+      "zweig": "master",
+      "pfad": "buecher/bund/wetten",
       "sammelbuch": false
     },
     {
@@ -38,6 +86,18 @@
       "sammelbuch": false
     },
     {
+      "ordner": "duisburg",
+      "titel": "Duisburg gegen Duisburg",
+      "institution": "Stadt Duisburg",
+      "halter": "Felix Lind",
+      "kontakt": "https://belegbar.eu",
+      "einreichung": null,
+      "repo": "Felix3c/festgehalten",
+      "zweig": "master",
+      "pfad": "buecher/duisburg/wetten",
+      "sammelbuch": false
+    },
+    {
       "ordner": "essen",
       "titel": "Essen gegen Essen",
       "institution": "Stadt Essen",
@@ -47,6 +107,54 @@
       "repo": "Felix3c/festgehalten",
       "zweig": "master",
       "pfad": "buecher/essen/wetten",
+      "sammelbuch": false
+    },
+    {
+      "ordner": "gatekeeper",
+      "titel": "Gatekeeper gegen Gatekeeper",
+      "institution": "DMA-Gatekeeper",
+      "halter": "Felix Lind",
+      "kontakt": "https://belegbar.eu",
+      "einreichung": null,
+      "repo": "Felix3c/festgehalten",
+      "zweig": "master",
+      "pfad": "buecher/gatekeeper/wetten",
+      "sammelbuch": false
+    },
+    {
+      "ordner": "gelsenkirchen",
+      "titel": "Gelsenkirchen gegen Gelsenkirchen",
+      "institution": "Stadt Gelsenkirchen",
+      "halter": "Felix Lind",
+      "kontakt": "https://belegbar.eu",
+      "einreichung": null,
+      "repo": "Felix3c/festgehalten",
+      "zweig": "master",
+      "pfad": "buecher/gelsenkirchen/wetten",
+      "sammelbuch": false
+    },
+    {
+      "ordner": "hagen",
+      "titel": "Hagen gegen Hagen",
+      "institution": "Stadt Hagen",
+      "halter": "Felix Lind",
+      "kontakt": "https://belegbar.eu",
+      "einreichung": null,
+      "repo": "Felix3c/festgehalten",
+      "zweig": "master",
+      "pfad": "buecher/hagen/wetten",
+      "sammelbuch": false
+    },
+    {
+      "ordner": "hamm",
+      "titel": "Hamm gegen Hamm",
+      "institution": "Stadt Hamm",
+      "halter": "Felix Lind",
+      "kontakt": "https://belegbar.eu",
+      "einreichung": null,
+      "repo": "Felix3c/festgehalten",
+      "zweig": "master",
+      "pfad": "buecher/hamm/wetten",
       "sammelbuch": false
     },
     {
@@ -62,6 +170,18 @@
       "sammelbuch": true
     },
     {
+      "ordner": "ki",
+      "titel": "KI gegen KI",
+      "institution": "Unterzeichner GPAI-Verhaltenskodex",
+      "halter": "Felix Lind",
+      "kontakt": "https://belegbar.eu",
+      "einreichung": null,
+      "repo": "Felix3c/festgehalten",
+      "zweig": "master",
+      "pfad": "buecher/ki/wetten",
+      "sammelbuch": false
+    },
+    {
       "ordner": "koeln",
       "titel": "Köln gegen Köln",
       "institution": "Stadt Köln",
@@ -71,6 +191,102 @@
       "repo": "Felix3c/festgehalten",
       "zweig": "master",
       "pfad": "buecher/koeln/wetten",
+      "sammelbuch": false
+    },
+    {
+      "ordner": "krefeld",
+      "titel": "Krefeld gegen Krefeld",
+      "institution": "Stadt Krefeld",
+      "halter": "Felix Lind",
+      "kontakt": "https://belegbar.eu",
+      "einreichung": null,
+      "repo": "Felix3c/festgehalten",
+      "zweig": "master",
+      "pfad": "buecher/krefeld/wetten",
+      "sammelbuch": false
+    },
+    {
+      "ordner": "moenchengladbach",
+      "titel": "Mönchengladbach gegen Mönchengladbach",
+      "institution": "Stadt Mönchengladbach",
+      "halter": "Felix Lind",
+      "kontakt": "https://belegbar.eu",
+      "einreichung": null,
+      "repo": "Felix3c/festgehalten",
+      "zweig": "master",
+      "pfad": "buecher/moenchengladbach/wetten",
+      "sammelbuch": false
+    },
+    {
+      "ordner": "muelheim",
+      "titel": "Mülheim gegen Mülheim",
+      "institution": "Stadt Mülheim an der Ruhr",
+      "halter": "Felix Lind",
+      "kontakt": "https://belegbar.eu",
+      "einreichung": null,
+      "repo": "Felix3c/festgehalten",
+      "zweig": "master",
+      "pfad": "buecher/muelheim/wetten",
+      "sammelbuch": false
+    },
+    {
+      "ordner": "muenster",
+      "titel": "Münster gegen Münster",
+      "institution": "Stadt Münster",
+      "halter": "Felix Lind",
+      "kontakt": "https://belegbar.eu",
+      "einreichung": null,
+      "repo": "Felix3c/festgehalten",
+      "zweig": "master",
+      "pfad": "buecher/muenster/wetten",
+      "sammelbuch": false
+    },
+    {
+      "ordner": "nrw",
+      "titel": "NRW gegen NRW",
+      "institution": "Land Nordrhein-Westfalen",
+      "halter": "Felix Lind",
+      "kontakt": "https://belegbar.eu",
+      "einreichung": null,
+      "repo": "Felix3c/festgehalten",
+      "zweig": "master",
+      "pfad": "buecher/nrw/wetten",
+      "sammelbuch": false
+    },
+    {
+      "ordner": "oberhausen",
+      "titel": "Oberhausen gegen Oberhausen",
+      "institution": "Stadt Oberhausen",
+      "halter": "Felix Lind",
+      "kontakt": "https://belegbar.eu",
+      "einreichung": null,
+      "repo": "Felix3c/festgehalten",
+      "zweig": "master",
+      "pfad": "buecher/oberhausen/wetten",
+      "sammelbuch": false
+    },
+    {
+      "ordner": "weitsicht",
+      "titel": "Weitsicht — acht Forderungen, acht Kennzahlen",
+      "institution": "Weitsicht (Arbeitspapier)",
+      "halter": "Felix Lind",
+      "kontakt": "https://belegbar.eu",
+      "einreichung": null,
+      "repo": "Felix3c/festgehalten",
+      "zweig": "master",
+      "pfad": "buecher/weitsicht/wetten",
+      "sammelbuch": false
+    },
+    {
+      "ordner": "wuppertal",
+      "titel": "Wuppertal gegen Wuppertal",
+      "institution": "Stadt Wuppertal",
+      "halter": "Felix Lind",
+      "kontakt": "https://belegbar.eu",
+      "einreichung": null,
+      "repo": "Felix3c/festgehalten",
+      "zweig": "master",
+      "pfad": "buecher/wuppertal/wetten",
       "sammelbuch": false
     }
   ]

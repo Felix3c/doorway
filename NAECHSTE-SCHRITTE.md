@@ -44,6 +44,10 @@ Schleifenerkennung im Spam, das ist normal).
 - `site/hinterlegen.html` + `site/hinterlegen-seite.js` — Formular, Vorschau, Entwurf, Status.
 - `site/daten/buecher.json` — Kopie der Buchliste, Stand 2026-09-08, am 11.09. geprüft:
   byteidentisch mit der Live-Liste auf festgehalten.
+  **11.10.2026 (Dauerlauf):** auf Stand 2026-10-11 gebracht, 24 Bücher (vorher 6), Einträge
+  identisch mit `felix3c.github.io/festgehalten/buecher.json` vom 11.10. 00:50; die sechs alten Einträge
+  unverändert. pruefung grün, 13 Fälle, pytest 130 grün. Lokal committet, **Push macht Felix**
+  (danach ist die Institutionsliste im Formular auf allen 24 Büchern).
 
 **Gemessen am 11.09.:** `node site/hinterlegen.pruefung.mjs` „ok: 13 Fälle",
 `node site/pruefung.mjs` grün, `python -m pytest -q` 130 grün ohne Warnungen.
